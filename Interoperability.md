@@ -49,7 +49,7 @@ This is a report covering weeks 31-32. Of highlight, both CLs for preserving inv
 - The StylePropertyMap.set method should accept `<custom-ident>`
   - There is a bug upstream to track this issue https://issues.chromium.org/issues/40682424
   - [ WIP ] https://chromium-review.googlesource.com/c/chromium/src/+/8196029
-    - The CL covers animation-name, container-name and page CSS properties, but I don't discard adding more properties to the same CL
+    - The CL covers animation-name, container-name and page CSS properties, but we won't discard adding more properties to the same CL
 - Extending the Typed OM support to other properties and values
   - [ MERGED ] https://chromium-review.googlesource.com/c/chromium/src/+/8209360
 
