@@ -1,5 +1,49 @@
 # SOCBB WPT Infra Igalia Status Updates
 
+## Jul 27, 2026 – Aug 9, 2026 (Weeks 31-32)
+
+### Summary
+This is a report covering weeks 31-32. Of highlight, the WPT RFC for non-sRGB/HDR screenshot reftests was opened for review, two proof-of-concept Chromium CLs for Display-P3 screenshot capture were prototyped, and a switch to use only virtual video capture devices for getUserMedia() mock-device support was landed.
+
+* **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Topics & Tasks
+
+#### WPT reftests for HDR and wide gamut color
+- https://issues.chromium.org/issues/483413433
+  - WPT-side RFC and standardization:
+    - [Ready for review] Opened the WPT RFC PR (https://github.com/web-platform-tests/rfcs/pull/242) for non-sRGB/HDR screenshot reftests after completing the internal review.
+    - The WebDriver BiDi proposal (https://github.com/w3c/webdriver-bidi/issues/1114) remains open and is still awaiting feedback and discussion.
+    - Create PNG validator for color comparison: https://github.com/web-platform-tests/wpt/pull/61879
+    - Prevent fuzzy comparison for high bit depth: https://github.com/web-platform-tests/wpt/pull/61879
+  - Chromium implementation feasibility:
+    - Implemented the initial 8-bit Display-P3/PNG feasibility path in two dependent Chromium CLs:
+      - [POC] Add a destination color space to Viz copy output - https://chromium-review.googlesource.com/c/chromium/src/+/8174224
+      - [POC] Prototype top-level Display-P3 screenshot capture - https://chromium-review.googlesource.com/c/chromium/src/+/8181686
+    - The current prototype is limited to the initial `display-p3` / `image/png`
+    - Continue refining the Chromium compositor/Viz capture path, experimental CDP support, corresponding Chromium tests and the `chromium-bidi` mapper change.
+  - JPEG XL tests:
+    - Add reftest for animated `<img>` - https://github.com/web-platform-tests/wpt/pull/61685
+    - Test image rendering using CSS - https://github.com/web-platform-tests/wpt/pull/61686
+
+#### Page zoom / device pixel ratio testing
+- https://issues.chromium.org/issues/489737943
+  - The status remains unchanged: the related WPT PR has two approvals and is awaiting one additional approval.
+  - [In Review] [testdriver] Expose BiDi browsingContext.setViewport to regular WPT tests - https://github.com/web-platform-tests/wpt/pull/59265
+
+#### Mock devices for getUserMedia() tests
+- http://crbug.com/489736656
+  - Continued Chromium-side work for WPT getUserMedia() mock-device support:
+    - [Landed] Add switch to use only virtual video capture devices - https://chromium-review.googlesource.com/c/chromium/src/+/8181527
+      - When `--video-capture-use-virtual-devices-only` enabled, `VirtualDeviceEnabledDeviceFactory` is created without an underlying device factory, so only registered virtual cameras are exposed to the page.
+      - Added coverage for the factory-without-an-underlying-device case and service-level device exposure.
+    - [In Review] Implemented an experimental CDP `Browser.addMockCamera` command:
+      - Add Browser.addMockCamera DevTools command - https://chromium-review.googlesource.com/c/chromium/src/+/8213640
+      - Builds on the previously landed `MockCameraDevice` and `MockCaptureDeviceController` helpers.
+      - Adds command plumbing, browser-test coverage, and cleanup for cameras created through the command.
+---
+
+
 ## Jul 16, 2026 – Jul 30, 2026 (Weeks 29–30)
 
 * **Spreadsheet:** [Tracking Sheet](https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing)
