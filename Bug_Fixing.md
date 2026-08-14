@@ -2,6 +2,20 @@
 
 # SOCBB Bugfixing Igalia Status Update 
 
+Reporting Period:  Jul 27, 2026 - Aug 07, 2026
+
+Scope: Bugfixing across Chromium codebase, focusing on UI/UX issues, web standards compliance, and platform-specific behavior
+
+---
+
+This is a status update covering weeks 31-32.
+
+#### Seams between layers with subpixel transforms or transform animations
+- [Medium] (crbug.com/401515597)
+  - Shared the findings to the bug and unassigned from the bug. (How `SkBlendMode::kSrcOver` works at edge and potential solution of using `SkBlendMode::kPlus`)
+
+---
+
 Reporting Period:  Jul 2, 2026- Jul 16, 2026
 
 Scope: Bugfixing across Chromium codebase, focusing on UI/UX issues, web standards compliance, and platform-specific behavior
