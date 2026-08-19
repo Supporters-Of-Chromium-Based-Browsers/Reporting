@@ -1,5 +1,71 @@
 # SOCBB Interop Igalia Status Updates
 
+## Jul 27 - Aug 9 2026 (Weeks 31-32)
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+This is a report covering weeks 31-32. Of highlight, both CLs for preserving invalid selectors in `:is()` and `:where()` were merged, work began investigating why worker constructors throw a SecurityError instead of firing an error event for cross-origin scripts, and several CSS Typed OM interop issues were merged, including simplifying calc expression serialization and extending Typed OM support to more properties and values.
+
+#### Preserving invalid selectors in `:is()` and `:where()`
+- wpt: https://wpt.fyi/results/css/selectors/is-where-error-recovery.html?sha=481e27d6ae&label=master&label=experimental&view=test&q=chrome%3A%21PASS%20edge%3A%21PASS%20firefox%3APASS%20safari%3APASS%20none%28is%3Aoptional%29%20%21path%3A%2Fthird_party%2F
+- Standard discussion (https://github.com/w3c/csswg-drafts/issues/8356):
+  - Shared new wpt cases to the discussion (https://github.com/w3c/csswg-drafts/issues/8356#issuecomment-5125703778)
+- CLs (Landed behind an experimental feature):
+  - [ MERGED ] https://crrev.com/c/8068106 - Preserve invalid selectors in :is() and :where()
+  - [ MERGED ] https://crrev.com/c/8061514 - fixup! Preserve invalid selectors in :is() and :where()
+- Remaining tasks:
+  - Edit the spec.
+  - Enable the flag on stable (w/ Intent to Ship)
+
+#### Worker constructors throw SecurityError instead of firing an error event for cross-origin scripts
+- Explore the spec, bug, and implementation.
+  - wpt: https://wpt.fyi/results/workers/dedicated-worker-in-data-url-context.window.html?label=master&label=experimental&aligned&q=chrome%3A%21PASS%20edge%3A%21PASS%20firefox%3APASS%20safari%3APASS%20none%28is%3Aoptional%29%20%21path%3A%2Fthird_party%2F
+  - crbug: https://crbug.com/40676421
+  - spec:
+    - https://html.spec.whatwg.org/multipage/workers.html#run-a-worker
+    - https://fetch.spec.whatwg.org/#fetching
+
+#### Incorrect asterisk (`*`) escaping while parsing URL host
+- wpt: https://wpt.fyi/results/url/a-element-origin.html?label=master&label=experimental&aligned&q=chrome%3A%21PASS%20edge%3A%21PASS%20firefox%3APASS%20safari%3APASS%20none%28is%3Aoptional%29%20%21path%3A%2Fthird_party%2F
+- Seems to have the similar issues with the space escaping in the URL host.
+  - There is a pending work that has unaddressed concerns on unrecoverable failures in extensions and persistent storages (crrev.com/c/5753305)
+
+#### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- [REVIEW] https://crrev.com/c/8090107
+
+#### CSS Typed OM interop issues
+- Expose interfaces to Worker Context
+  - [ REVIEW ] https://chromium-review.googlesource.com/c/chromium/src/+/8085260
+  - The PR to update the WPT has been merged, but Chrome WPT sync process is stalled
+    - https://github.com/web-platform-tests/wpt/pull/61330/
+  - Discussing some spec changes in the CSS namespace to extend CSS Factories to Worker contexts.
+    - https://github.com/w3c/csswg-drafts/issues/14229
+    - Submitted 2 spec PRs to apply the required changes
+      - https://github.com/w3c/css-houdini-drafts/pull/1177
+      - https://github.com/w3c/csswg-drafts/pull/14245
+  - Working on the intent-to-ship request
+    - https://groups.google.com/a/chromium.org/d/msgid/blink-dev/0786569a-3c4b-421c-af22-a6bc4a717ccc%40igalia.com
+- Simplify calc expressions when serializing CSSMathValue instances
+  - [ MERGED ] https://chromium-review.googlesource.com/c/chromium/src/+/8196011
+- The StylePropertyMap.set method should accept `<custom-ident>`
+  - There is a bug upstream to track this issue https://issues.chromium.org/issues/40682424
+  - [ WIP ] https://chromium-review.googlesource.com/c/chromium/src/+/8196029
+    - The CL covers animation-name, container-name and page CSS properties, but we won't discard adding more properties to the same CL
+- Extending the Typed OM support to other properties and values
+  - [ MERGED ] https://chromium-review.googlesource.com/c/chromium/src/+/8209360
+
+#### Missing CSSPageDescriptors class in the CSSPageRule IDL definition
+- [ WIP ] https://chromium-review.googlesource.com/c/chromium/src/+/8156365
+- I have filed the bug https://issues.chromium.org/issues/541924681 to track this issue
+  - It seems there are a few related bugs, filed some time ago; see issue 40689765 and issue 40816292.
+- Morten has some doubts about the spec, which he shared in the CSSWG issue
+  - https://github.com/w3c/csswg-drafts/issues/10105#issuecomment-2292901456
+  - https://github.com/w3c/csswg-drafts/issues/5969
+  - Apparently we got an agreement of implementing the Descriptor class including only the attributes that are specified in https://drafts.csswg.org/css-page-3/#page-descriptor-table, but with the idea of clarifying the spec issues as soon as possible.
+- Sent an intent-to-prototype request
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/tbnEQDyY3JM/m/Yf16btMVAAAJ
+
+---
+
 ## Jul 16, 2026 – Jul 30, 2026 (Weeks 29–30)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.

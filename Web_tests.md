@@ -1,5 +1,78 @@
 # SOCBB WPT Tests Igalia Status Updates
 
+## July 27, 2026 - Aug 7, 2026 (Weeks 31-32)
+
+* **Scope:** Improving the state of web tests in Chromium-based browsers.
+* **Spreadsheet:** [Tracking Sheet](https://docs.google.com/spreadsheets/d/1rceYcaQiR7n6VOF59emYP1KlnGHZ3QizDlxnH-zaKYI)
+
+### Summary
+This is a report covering weeks 31-32. There was work in many areas related to WPT test expectations over the last two weeks. Of highlight, fixes for captureStream() tracks not restarting after playback ends and for execute_async_script crashing with a null timeout were both merged, fuzzy matching was added to several reftests, and internal XMLHttpRequest and MSE tests continued to be removed or migrated to WPT.
+
+### Test Expectations
+
+#### `side` attribute on SVGTextPathElement
+- [WIP] Expose the `side` attribute on SVGTextPathElement, supporting "left" and "right" values - for side="right", text positions are mapped from the end of the path and the tangent direction is reversed (crbug.com/40362379, crbug.com/499073687)
+  - [WIP] [SVG] Implement the side attribute for textPath - https://chromium-review.googlesource.com/c/chromium/src/+/8220847
+
+#### captureStream() tracks not restarting after playback ends
+- Fix captureStream() tracks not restarting after playback ends - the captured tracks never fired an "ended" event, so now their sources are stopped via DidStopMediaStreamSource() instead of stopTrack(), and the tracks are recreated when playback restarts (crbug.com/484258336)
+  - [Merged] Fix captureStream() tracks not restarting after playback ends - https://chromium-review.googlesource.com/c/chromium/src/+/8184757
+
+#### execute_async_script crash when script timeout is null
+- Fix execute_async_script crash when script timeout is null - a null timeout maps to base::TimeDelta::Max(), which can't be stored in a base::Value, so the JS timeout argument is now omitted in that case since undefined is treated as no timeout (crbug.com/479872440)
+  - [Merged] Fix execute_async_script crash when script timeout is null - https://chromium-review.googlesource.com/c/chromium/src/+/8190774
+
+#### Fix bugs in the test files themselves
+- [Merged] Preserve CRLF in meta charset boundary tests - https://chromium-review.googlesource.com/c/chromium/src/+/8198964 (crbug.com/40834455)
+  - Git's EOL normalization was stripping intentional CR bytes, shifting the meta charset position relative to the 1024-byte boundary - disabled Git text conversion for these files and restored the CR bytes
+- [Merged] Fix clipboard permissions-policy tests timing out - https://chromium-review.googlesource.com/c/chromium/src/+/8185536 (crbug.com/492280259)
+  - The tests sent `{enabled: true/false}`, but `test_feature_availability()` filters on `evt.data.type === 'availability-result'`, so `test.done()` was never called - added the missing `type` field
+- [Merged] Add long timeout to 3 accname tests - https://chromium-review.googlesource.com/c/chromium/src/+/8129542 (crbug.com/443203688)
+  - These tests generate many dynamic test cases and can exceed the default 10s testharness timeout
+
+#### Canvas 2D stroke pruning
+- [Merged] Fix canvas 2D stroke pruning of degenerate zero-length path segments - https://chromium-review.googlesource.com/c/chromium/src/+/8057524
+  - Code fix in 2d canvas in the renderer that accounts for zero-length segments by pruning them
+
+#### Fragmentation test baseline
+- [Merged] Add missing baseline for fragmentation test - https://chromium-review.googlesource.com/c/chromium/src/+/8073953
+
+#### Fuzzy matching for reftests
+- [Merged] Add fuzzy match to jpegxl reftest for JXL's rounding difference - https://chromium-review.googlesource.com/c/chromium/src/+/8173443 (crbug.com/507903802)
+- [Merged] Add fuzzy match to rotate keyframes animation reftest - https://chromium-review.googlesource.com/c/chromium/src/+/8173664 (crbug.com/499073688)
+
+#### Obsolete test expectations cleanup
+- [Merged] Remove obsolete MathML anchor test expectations - https://chromium-review.googlesource.com/c/chromium/src/+/8138000
+- [Merged] Remove obsolete Application panel sidebar test expectations - https://chromium-review.googlesource.com/c/chromium/src/+/8162042
+- [Merged] Remove obsolete mixed-content audio/video-tag test expectations - https://chromium-review.googlesource.com/c/chromium/src/+/8198005
+- [Merged] Remove obsolete vertical-alignment-slr test expectations - https://chromium-review.googlesource.com/c/chromium/src/+/8206247
+- [Merged] Remove obsolete cross-origin fullscreen test expectations - https://chromium-review.googlesource.com/c/chromium/src/+/8200047
+- [Merged] Remove stale TestExpectations for prerender same-origin subframe test - https://chromium-review.googlesource.com/c/chromium/src/+/8170045
+- [Merged] Remove stale Linux-only scroll-animations TestExpectations entries - https://chromium-review.googlesource.com/c/chromium/src/+/8169783
+- [Merged] Remove stale TestExpectations for http test failures - https://chromium-review.googlesource.com/c/chromium/src/+/8089256
+- [Merged] Remove stale Linux canvas-imageSmoothing TestExpectations entry - https://chromium-review.googlesource.com/c/chromium/src/+/8089061
+- [Merged] Remove windows scroll animations from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8182328
+- [Merged] Remove TestExpectations entries for threaded composited iframe tests - https://chromium-review.googlesource.com/c/chromium/src/+/8181047
+- [Merged] Remove stale Mac scroll-animations tests from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8178986
+- [Merged] Remove stale TestExpectations entry for CSS image animation test - https://chromium-review.googlesource.com/c/chromium/src/+/8179287
+
+#### content_shell.filter cleanup
+- [Merged] Remove css2 borders tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8183972
+
+### Internal Tests
+
+#### Internal Tests already covered by WPT (crbug.com/485677942)
+- Remove redundant internal tests
+  - [Merged] Remove redundant XMLHttpRequest tests from xmlhttprequest/web-apps - https://chromium-review.googlesource.com/c/chromium/src/+/8173803
+- Migrate internal tests to WPT
+  - [Review] Migrate XHR reuse-after-completion tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8174325
+  - [Review] Migrate MSE endofstream-invaliderror tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8129277
+
+#### WPT crashtest migrations
+- [Merged] Migrate css-syntax atrule-with-escape-character crashtest to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8169945
+- [Merged] Migrate CSS2 float-append-child crashtest to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8187614
+
+
 ## Jul 16, 2026 – Jul 30, 2026 (Weeks 29–30)
 
 * **Scope:** Improving the state of web tests in Chromium-based browsers.
