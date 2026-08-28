@@ -1,5 +1,62 @@
 # SOCBB WPT Infra Igalia Status Updates
 
+## Aug 10 - Aug 23, 2026 (Weeks 33-34)
+
+## SOCBB WPT Infra Igalia Status Updates Weeks 33-34
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+
+Of highlight in the WPT infra work from the last two weeks, the WPT RFC for non-sRGB/HDR screenshot reftests received an approval, work continued on the CDP `Browser.addMockCamera` command for getUserMedia() mock-device support, and initial investigation began on testability gaps around TLS platform features, browser-initiated navigation, and native find-in-page support.
+
+Sheet: https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### WPT reftests for HDR and wide gamut color
+- https://issues.chromium.org/issues/483413433
+- Review, improvements and polish of the WPT side patch: https://github.com/web-platform-tests/wpt/pull/61879
+- WPT-side RFC and standardization:
+  - [In Review] WPT RFC PR #242 (https://github.com/web-platform-tests/rfcs/pull/242) has received an approval.
+  - The WebDriver BiDi proposal (https://github.com/w3c/webdriver-bidi/issues/1114) remains open and is still awaiting feedback and discussion.
+- Chromium implementation feasibility:
+  - Continued refining the initial 8-bit Display-P3/PNG feasibility path in two dependent Chromium CLs:
+    - [POC] Add a destination color space to Viz copy output - https://chromium-review.googlesource.com/c/chromium/src/+/8174224
+    - [POC] Prototype top-level Display-P3 screenshot capture - https://chromium-review.googlesource.com/c/chromium/src/+/8181686
+  - Continued working on the chromium-bidi mapper change.
+
+### Cannot test TLS or TLS-adjacent platform features
+- https://issues.chromium.org/issues/489734010
+- Start investigating and drafting a prototype. This needs a more detailed RFC that takes into account how to design the tool that tests TLS and what language to use.
+
+### Native find-in-page support
+- Started working on adding support for native find-in-page, currently investigating.
+
+### Session history check for whether a browsing context is script-closable is not testable
+- https://issues.chromium.org/issues/492218536
+- Step 0: [In Progress, Non-blocking] Spec discussion threads in WebDriver classic (https://github.com/w3c/webdriver/issues/1972) and WebDriver BiDi (https://github.com/w3c/webdriver-bidi/issues/859)
+- Step 1: [Review] Add test_driver.create_window() - https://github.com/web-platform-tests/wpt/pull/62103
+- Step 2: [In Progress] Add test_driver.navigate_to()
+- Step 3: [Blocked by 1 & 2] Write test
+
+### Testing browser-initiated navigation
+- https://issues.chromium.org/issues/489734255
+- [In Progress] This will be addressed as a secondary effect of Step 2 above.
+
+### Page zoom / device pixel ratio testing
+- https://issues.chromium.org/issues/489737943
+- [In Review] [testdriver] Expose BiDi browsingContext.setViewport to regular WPT tests - https://github.com/web-platform-tests/wpt/pull/59265
+  - Received additional reviewer feedback that viewport restoration should be handled by the API rather than repeated by each caller
+  - Working on a cleanup design that preserves the generic `set_viewport` API while ensuring that viewport overrides are restored at the appropriate test boundary.
+
+### Mock devices for getUserMedia() tests
+- http://crbug.com/489736656
+- Continued Chromium-side work for WPT getUserMedia() mock-device support:
+  - [In Review] Implemented an experimental CDP `Browser.addMockCamera` command:
+    - Add Browser.addMockCamera DevTools command - https://chromium-review.googlesource.com/c/chromium/src/+/8213640
+    - Registered mock cameras in the shared browser-wide video-capture device list and tied their lifetime to the creating DevTools session.
+    - Investigated a macOS crash that occurs after Browser.addMockCamera succeeds, when getUserMedia() starts frame delivery through the shared-memory virtual-device path.
+  - Continued working on finalizing the Chromium CL and establishing the CDP command as the internal bridge for ChromeDriver/WebDriver and WPT integration.
+
 ## Jul 27, 2026 – Aug 9, 2026 (Weeks 31-32)
 
 ### Summary
