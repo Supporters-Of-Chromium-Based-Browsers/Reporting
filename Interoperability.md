@@ -1,5 +1,78 @@
 # SOCBB Interop Igalia Status Updates
 
+## Aug 10 - Aug 23 2026 (Weeks 33-34)
+
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+### Summary
+
+There was work in many areas related to interop over the last two weeks. Of highlight, the fixes for preserving invalid selectors in `:is()` and `:where()` are all merged behind an experimental feature, work began on a CL to fire an asynchronous error event instead of a synchronous SecurityError for worker constructors with cross-origin scripts, and a `:has()` invalidation performance bug was fixed and merged.
+
+### Preserving invalid selectors in `:is()` and `:where()`
+- https://crbug.com/40277472
+- Fixes are all merged behind the experimental feature (m153).
+- Pinged tab for spec update: https://github.com/w3c/csswg-drafts/issues/8356#issuecomment-5277664908
+
+### Worker constructors throw SecurityError synchronously instead of firing an error event asynchronously for cross-origin scripts
+- https://crbug.com/40676421
+- Created ChromeStatus feature, sent I2S, finished drafting CL and activated for review:
+  - ChromeStatus feature: https://chromestatus.com/feature/5174660823121920
+  - I2P: https://groups.google.com/a/chromium.org/g/blink-dev/c/os9r6lFGgj4
+  - [ REVIEW ] https://crrev.com/c/8267044
+
+### Worker/Worklet CSP violations on module tree fetching don't fire securitypolicyviolation event
+- Failures in wpt/content-security-policy/gen/ - https://crbug.com/40612680
+- Explore the issue and draft CLs:
+  - [ WIP ] https://crrev.com/c/8256819 (fix for dedicatedworker/worklet)
+  - [ WIP ] https://crrev.com/c/8277072 (fix for sharedworker)
+
+### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- https://crbug.com/534847486
+- Waiting for the review:
+  - [ REVIEW ] https://crrev.com/c/8090107
+
+### (bugfix) BaseAudioContext should not skip `suspended` state upon construction
+- https://crbug.com/40140417
+- Merged a CL / waiting for the review:
+  - [ MERGED ] https://crrev.com/c/8001352
+  - [ REVIEW ] https://crrev.com/c/8010828
+
+### (bugfix) Avoid unnecessary :has() invalidation for attribute-less element insertion
+- https://crbug.com/541852835
+- Fixed a bug report related to `:has()` invalidation performance:
+  - [ MERGED ] https://crrev.com/c/8238272
+
+### CSS Typed OM interop issues
+
+- Core CSS Typed OM interfaces not exposed in Worker context
+  - [ MERGED ] https://crrev.com/c/8085260
+  - The CSSWG issue 14229 still needs to be discussed, but the PRs for the spec have been approved by Emilio and the WPT have been synced
+    - https://github.com/w3c/csswg-drafts/issues/14229
+    - https://github.com/web-platform-tests/wpt/pull/61330/
+    - https://github.com/w3c/css-houdini-drafts/pull/1177
+    - https://github.com/w3c/csswg-drafts/pull/14245
+- Wrap out-of-range values into a CSSMathSum value  
+  - https://issues.chromium.org/issues/497855649 
+  - [ MERGED ] https://crrev.com/c/8248080
+- The StylePropertyMap.set method should accept `<custom-ident>`
+  - https://issues.chromium.org/issues/40682424
+  - [ MERGED ] https://crrev.com/c/8196029
+
+
+### namespaces in `attr()`
+- IN PROGRESS: Support namespaces in `attr()`
+  - Submitted a detailed update to the reviewer, addressing his feedback.
+  - Reviewer suggested to break down the change in multiple CL, as several different areas are affected.
+  - Currently working on addressing feedback and breaking up the current large CL.
+  - https://chromium-review.googlesource.com/c/chromium/src/+/7931006
+
+### Memory issue in CSS Animation Iteration Composite
+- IN PROGRESS: Memory issue in CSS Animation Iteration Composite
+  - A feature I implemented seems to have introduced a potential memory issue. Investigating.
+  - https://issues.chromium.org/u/1/issues/488874620
+
+
+
 ## Jul 27 - Aug 9 2026 (Weeks 31-32)
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
 
