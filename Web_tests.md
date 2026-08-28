@@ -1,5 +1,68 @@
 # SOCBB WPT Tests Igalia Status Updates
 
+## Aug 10 - Aug 23, 2026 (Weeks 33-34)
+
+**Scope:** Improving the state of web tests in Chromium-based browsers.
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+
+### Summary
+This is a report covering weeks 33-34. Of highlight from the last two weeks, a fix to hide the scrollbar in transform-iframe-scroll-position was merged, work continued on exposing the `side` attribute on SVGTextPathElement and on resetting font orientation for canvas 2D fonts, and a large number of stale test expectations and content_shell.filter entries were cleaned up.
+
+### Test Expectations
+
+#### `side` attribute on SVGTextPathElement
+- Expose the `side` attribute on SVGTextPathElement, supporting "left" and "right" values — for side="right", text positions are mapped from the end of the path and the tangent direction is reversed (crbug.com/40362379, crbug.com/499073687)
+  - [Review] [SVG] Implement the side attribute for textPath - https://chromium-review.googlesource.com/c/chromium/src/+/8220847
+    - Currently going through Blink's Intent to Prototype process (https://chromestatus.com/feature/5422782593761280)
+
+#### Canvas 2D font orientation
+- Reset font orientation when resolving canvas 2D fonts — canvas 2D fonts must use horizontal orientation regardless of the canvas element's writing mode (crbug.com/433324167)
+  - [Review] Reset font orientation when resolving canvas 2D fonts - https://chromium-review.googlesource.com/c/chromium/src/+/8238611
+
+#### transform-iframe-scroll-position scrollbar
+- Hide scrollbar in transform-iframe-scroll-position — the iframe's own scrollbar was showing up and breaking the pixel comparison against the reference, unrelated to the rotate transform (crbug.com/332572643)
+  - [Merged] Hide scrollbar in transform-iframe-scroll-position - https://chromium-review.googlesource.com/c/chromium/src/+/8228246
+
+#### Obsolete/stale test expectations cleanup
+- [Merged] Remove obsolete test expectations for fenced frame anchor focus - https://chromium-review.googlesource.com/c/chromium/src/+/8235952
+- [Done] Remove obsolete selectedcontent-nested test expectations - https://chromium-review.googlesource.com/c/chromium/src/+/8262708
+- [Done] Remove stale TestExpectation for svg painting test - https://chromium-review.googlesource.com/c/chromium/src/+/8180969
+- [Done] Remove stale TestExpectations entries for critical-ch tests on Linux - https://chromium-review.googlesource.com/c/chromium/src/+/8187834
+- [Done] Remove stale TestExpectation and orphaned baseline for v8 test - https://chromium-review.googlesource.com/c/chromium/src/+/8251177
+- [Done] Remove stale TestExpectations entry for table-border-1.html - https://chromium-review.googlesource.com/c/chromium/src/+/8246400
+- [Reverted] Rebaseline hit-test-counts.html and remove stale expectation - https://chromium-review.googlesource.com/c/chromium/src/+/8248121
+- [Done] Remove stale TestExpectation for scrolling test - https://chromium-review.googlesource.com/c/chromium/src/+/8249580
+- [Done] Remove stale TestExpectations for fetch metadata test - https://chromium-review.googlesource.com/c/chromium/src/+/8249580
+- [Done] Remove obsolete performance-measure-null-exception.html test - https://chromium-review.googlesource.com/c/chromium/src/+/8254358
+  - This test was checking if passing 'null' to a function threw an error, but that is now an allowed value, so the test is no longer needed
+- [Done] Remove stale TestExpectations entry for scrollbar-thumb-snapping - https://chromium-review.googlesource.com/c/chromium/src/+/8254358
+- [Done] Remove stale TestExpectations entries for autoplay timeout tests - https://chromium-review.googlesource.com/c/chromium/src/+/8259763
+- [Done] Remove stale CSP test from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8264847
+- [Done] Remove stale client hints test from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8263084
+- [Done] Remove TestExpectations entries for view-transition tests - https://chromium-review.googlesource.com/c/chromium/src/+/8252217
+- [Done] Remove stale embedded content TestExpectations entry - https://chromium-review.googlesource.com/c/chromium/src/+/8260959
+- [Reverted] Remove TestExpectation and baseline for wheel-event-transactions - https://chromium-review.googlesource.com/c/chromium/src/+/8243709
+
+#### content_shell.filter cleanup
+- [Done] Remove background fetch test from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8184836
+- [Done] Remove compositing tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8187699
+- [Done] Remove css anchor position tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8259126
+- [Done] Specify failing css break test in content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8264250
+- [Done] Remove CSS backgrounds tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8265745
+- [Done] Mark inline formatting context tests NeverFix on all platforms - https://chromium-review.googlesource.com/c/chromium/src/+/8269721
+- [Done] Remove CSS2 tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8263451
+- [Done] Remove CSS conditional tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8272492
+
+### Internal Tests
+
+#### Internal Tests already covered by WPT (crbug.com/485677942)
+- Migrate internal tests to WPT
+  - [Merged] Migrate MSE endofstream-invaliderror tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8129277
+  - [Review] Migrate MSE multiple-attach/sourcebufferlist coverage to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8254912
+  - [Review] Migrate XHR reuse-after-completion tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8174325
+
+
 ## July 27, 2026 - Aug 7, 2026 (Weeks 31-32)
 
 * **Scope:** Improving the state of web tests in Chromium-based browsers.
