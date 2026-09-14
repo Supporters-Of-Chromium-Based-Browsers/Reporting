@@ -1,5 +1,97 @@
 # SOCBB Interop Igalia Status Updates
 
+
+## SOCBB Interop Igalia Status Update Weeks 35-36 (Aug 24-Sep 6 2026)
+
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+### Summary
+This is a report covering weeks 35-36. Of highlight, fixes for `color-mix()`/`palette-mix()` percentages adding up to zero and for pixel-length parsing of body margins were both merged, a fix to provide `columnNumber` when dispatching the securitypolicyviolation event was merged, and the CSS Background shorthand serialization issues continue to be worked on.
+
+### `color-mix()` and `palette-mix()` percentages adding up to zero
+- [MERGED] Handle color-mix() and palette-mix() percentages adding up to zero
+  - https://crrev.com/c/8337347
+  - https://crbug.com/445726759
+
+### Pixel-length parsing for body margins
+- [MERGED] Use pixel-length parsing for body margins
+  - https://crrev.com/c/8321467
+  - https://crbug.com/554920796
+
+### stroke-dasharray non-additive interpolation
+- [REVIEWING, +1] Treat stroke-dasharray as non-additive
+  - https://crrev.com/c/8314391
+  - https://crbug.com/507903801
+
+### IDNA normalization of '<' and '>'
+- [REVIEWING] Let IDNA normalize '<' and '>' before validation
+  - https://crrev.com/c/8319268
+  - https://crbug.com/40256677
+
+### Smooth text-decoration-thickness transitions
+- [REVIEWING] Support smooth text-decoration-thickness transitions
+  - https://crrev.com/c/8335028
+  - https://crbug.com/361393675
+
+### namespaces in `attr()`
+- [IN PROGRESS] Support namespaces in `attr()`
+  - Broke down the change into multiple CLs.
+  - https://chromium-review.googlesource.com/c/chromium/src/+/7931006
+
+### Memory issue in CSS Animation Iteration Composite
+- [IN PROGRESS] Memory issue in CSS Animation Iteration Composite
+  - A feature I implemented seemed to have introduced a potential memory issue. Even though the specific issue has been solved, there are two related ones that still need fixing.
+  - https://issues.chromium.org/u/1/issues/488874620
+  - Fix unresolved color handling in gap and SVG paint animations
+    - https://crrev.com/c/8303053
+  - Fix iteration accumulation for nested interpolation values
+    - https://crrev.com/c/8306193
+
+### Worker/Worklet CSP violations on module tree fetching don't fire securitypolicyviolation event
+- Failures in wpt/content-security-policy/gen/ - https://crbug.com/40612680
+- wpt: https://wpt.fyi/results/content-security-policy/gen?label=master&label=experimental&aligned&q=chrome%3A%21PASS%20edge%3A%21PASS%20firefox%3APASS%20safari%3APASS%20none%28is%3Aoptional%29%20%21path%3A%2Fthird_party%2F
+- Finished drafting CLs and activated:
+  - [ REVIEW ] https://crrev.com/c/8256819 (fix for dedicatedworker/worklet)
+  - [ REVIEW ] https://crrev.com/c/8277072 (fix for sharedworker)
+
+### Provide columnNumber when dispatching securitypolicyviolation event
+- https://crbug.com/553141289
+- wpt: https://wpt.fyi/results/content-security-policy/securitypolicyviolation/blockeduri-inline.html
+- [ MERGED ] https://crrev.com/c/8305033
+
+### Triaging CSP related issues
+- Avoid reporting source location when script is not executing.
+  - wpt: https://wpt.fyi/results/content-security-policy/reporting-api/report-to-directive-allowed-in-meta.https.sub.html?label=master&label=experimental&aligned&q=chrome%3A%21PASS%20edge%3A%21PASS%20firefox%3APASS%20safari%3APASS%20none%28is%3Aoptional%29%20%21path%3A%2Fthird_party%2F
+  - Explored the spec and discussion:
+    - Spec: https://w3c.github.io/webappsec-csp/#create-violation-for-global
+    - Discussion: https://github.com/web-platform-tests/wpt/pull/55889
+  - Check implementation and draft PoC: https://crrev.com/c/8346567
+- Check CSP eagerly when event handler attribute is set via script
+  - wpt: https://wpt.fyi/results/content-security-policy/securitypolicyviolation/targeting.html?label=experimental&label=master&aligned
+    - The test fails with timeout without providing detailed failure for sub cases. Better to re-write or split the test.
+  - Explored the spec: https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-content-attributes
+  - Check implementation and draft PoC: https://crrev.com/c/8365264
+
+### Worker constructors throw SecurityError synchronously instead of firing an error event asynchronously for cross-origin scripts
+- https://crbug.com/40676421
+- [ REVIEW ] https://crrev.com/c/8267044
+
+### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- https://crbug.com/534847486
+- [ REVIEW ] https://crrev.com/c/8090107
+
+### (bugfix) BaseAudioContext should not skip `suspended` state upon construction
+- https://crbug.com/40140417
+- [ REVIEW ] https://crrev.com/c/8010828
+
+### CSS Background interop issues
+- Incorrect serialization of 'background' shorthand's initial values
+  - [REVIEW] https://crrev.com/c/8301652
+  - [WIP] https://crrev.com/c/8305832
+- The background-* shorthand should be serialized based on the layers count
+  - [WIP] https://crrev.com/c/8357772
+
+
 ## Aug 10 - Aug 23 2026 (Weeks 33-34)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
