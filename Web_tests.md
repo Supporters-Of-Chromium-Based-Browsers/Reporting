@@ -3,6 +3,7 @@
 ## August 24 - September 6 2026 (Weeks 35-36)
 
 **Scope:** Improving the state of web tests in Chromium-based browsers.
+
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
 
 ### Summary
