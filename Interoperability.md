@@ -1,7 +1,7 @@
 # SOCBB Interop Igalia Status Updates
 
 
-## SOCBB Interop Igalia Status Update Weeks 35-36 (Aug 24-Sep 6 2026)
+## August 24 - September 6 2026 (Weeks 34-35)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
 
