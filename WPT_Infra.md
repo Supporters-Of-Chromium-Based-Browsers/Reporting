@@ -1,5 +1,74 @@
 # SOCBB WPT Infra Igalia Status Updates
 
+## August 24 - September 6 2026 (Weeks 35-36)
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+
+This is a report covering weeks 35-36. Of highlight, the WPT RFC for non-sRGB/HDR screenshot reftests received an approval and the end-to-end Display-P3/PNG reftest path was tested across Chromium, chromium-bidi, and WPT, the experimental CDP `Browser.addMockCamera` command landed, and new investigations began on TLS platform feature testing, native find-in-page support, and PWA installation testing.
+
+### WPT reftests for HDR and wide gamut color
+- https://issues.chromium.org/issues/483413433
+- WPT-side RFC and standardization:
+  - [In Review] WPT RFC PR #242 (https://github.com/web-platform-tests/rfcs/pull/242) has received an approval. Ms2ger shared that the proposal was discussed at the WPT RFC meeting, where people were generally happy with the concept. The details are now awaiting review.
+  - The WebDriver BiDi proposal (https://github.com/w3c/webdriver-bidi/issues/1114) remains open and is still awaiting feedback and discussion.
+- Chromium implementation feasibility:
+  - Integrated changes across Chromium, chromium-bidi mapper, WebDriver BiDi, and WPT, and tested the initial 8-bit Display-P3/PNG reftest path end to end.
+    - Initial 8-bit Display-P3/PNG feasibility path in two dependent Chromium CLs:
+      - [POC] Add a destination color space to Viz copy output - https://chromium-review.googlesource.com/c/chromium/src/+/8174224
+      - [POC] Prototype top-level Display-P3 screenshot capture - https://chromium-review.googlesource.com/c/chromium/src/+/8181686
+    - chromium-bidi mapper: [POC] forward screenshot colorSpace to CDP - https://chromium-review.googlesource.com/c/chromium/src/+/8365244
+    - WebDriver BiDi: https://github.com/w3c/webdriver-bidi/commit/57d1775863e5f73b036e8f9727b7f172b6821bb7
+    - WPT: https://github.com/Minju-kim-igalia/wpt/commit/ed1211e7ff78ad32cd0a3dbf67547960411143c3
+
+### Page zoom / device pixel ratio testing
+- https://issues.chromium.org/issues/489737943
+- [In Review] [testdriver] Expose BiDi browsingContext.setViewport to regular WPT tests - https://github.com/web-platform-tests/wpt/pull/59265
+  - Updated `set_viewport` to use the current `promise_test` object for automatic cleanup.
+
+### Mock devices for getUserMedia() tests
+- http://crbug.com/489736656
+- Continued Chromium-side work for WPT getUserMedia() mock-device support:
+  - [Landed] Implemented an experimental CDP `Browser.addMockCamera` command:
+    - Add Browser.addMockCamera DevTools command - https://chromium-review.googlesource.com/c/chromium/src/+/8213640
+  - Drafted the Mock Capture Device Automation in Chromium design document (https://docs.google.com/document/d/1nOD_dlQXCQhccRGw2d9jmeFD1u_g2ORc4hMRW7f7Ew0/edit) for ChromeDriver/WebDriver and WPT integration.
+
+### Cannot test TLS or TLS-adjacent platform features
+- https://issues.chromium.org/issues/489734010
+- Finished basic prototype that proves feasibility of a small companion tool for wpt written in Rust using the `rusttls` library.
+- Start writing an RFC proposing this change.
+
+### Support for native find-in-page
+- Proposal to WebDriver BiDi - https://github.com/w3c/webdriver-bidi/issues/1157
+- CL to Chromium - https://chromium-review.googlesource.com/c/chromium/src/+/8298438
+- Now waiting for response in the above
+
+### Support for PWA installations
+- Currently in the investigation phase, spoke to some people internally and in the external WPT matrix room
+- Will continue sharing findings and ideas internally
+
+### Session history check for whether a browsing context is script-closable is not testable
+- https://issues.chromium.org/issues/492218536
+- [In Progress, Non-blocking] Spec discussion threads in WebDriver classic (https://github.com/w3c/webdriver/issues/1972) and WebDriver BiDi (https://github.com/w3c/webdriver-bidi/issues/859)
+- [In Review, Bumped] Add test_driver.create_window() - https://github.com/web-platform-tests/wpt/pull/62103
+- [In Review] Add test_driver.navigate_to() - https://github.com/web-platform-tests/wpt/pull/62198
+- [Complete] Write initial draft of tests
+- [Blocked by navigate_to and create_window PRs] Open PR for tests
+- Tangential work:
+  - Discussion on a Bugzilla issue related to the wpt preferences profile (https://bugzilla.mozilla.org/show_bug.cgi?id=1938147)
+  - Opened a CRBug for non-initial about:blank issue (https://issues.chromium.org/issues/552741963) uncovered while authoring tests
+
+### Testing browser-initiated navigation
+- https://issues.chromium.org/issues/489734255
+- [In Progress] This will be addressed as a secondary effect of Step 2 above.
+
+### Spelling and Grammar error tests need WPT infra support
+- https://issues.chromium.org/issues/40288147
+- [Complete] Write explainer - https://github.com/Igalia/explainers/blob/main/force-spelling-grammar-markers/README.md
+- [In Review] Add experimental setTextMarker and clearTextMarkers commands, Chromium CL - https://chromium-review.googlesource.com/c/chromium/src/+/8359795
+- [In progress] Seek plan approval from WebKit for tentative testdriver commands
+
 ## Aug 10 - Aug 23, 2026 (Weeks 33-34)
 
 ## SOCBB WPT Infra Igalia Status Updates Weeks 33-34

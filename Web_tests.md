@@ -1,5 +1,66 @@
 # SOCBB WPT Tests Igalia Status Updates
 
+## August 24 - September 6 2026 (Weeks 35-36)
+
+**Scope:** Improving the state of web tests in Chromium-based browsers.
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+This is a report covering weeks 35-36. Of highlight, implementing the `side` attribute on SVGTextPathElement, scrolling anchor-positioned fixed boxes into view on focus, and resetting font orientation for canvas 2D fonts were all merged, and a large number of stale test expectations and content_shell.filter entries were cleaned up.
+
+### Test Expectations
+
+#### `side` attribute on SVGTextPathElement
+- Implement the `side` attribute on SVGTextPathElement ("left"/"right") (crbug.com/40362379, crbug.com/499073687)
+  - [Merged] https://crrev.com/c/8220847
+  - Currently at the Prepare to Ship stage: https://chromestatus.com/feature/5422782593761280
+
+#### Scroll anchor-positioned fixed boxes into view on focus
+- crbug.com/469481151
+  - [Merged] https://crrev.com/c/8311148
+    - Reverted once due to flaky failures only in virtual/fragmented-oof-in-cb. Relanded with TestExpectations entries added for this virtual suite.
+
+#### Canvas 2D font orientation
+- Reset font orientation when resolving canvas 2D fonts (crbug.com/433324167)
+  - [Merged] https://crrev.com/c/8238611
+
+#### Stale idlharness.https.any expectations for webtransport
+- Remove stale idlharness.https.any expectations for webtransport (crbug.com/430125723)
+  - [Merged] https://crrev.com/c/8301393
+
+#### Allow empty body in fetchLater()
+- crbug.com/507904104
+  - [Review] https://crrev.com/c/8342967
+
+#### object-position-svg reftests fuzzy matching
+- Add fuzzy match to object-position-svg reftests (crbug.com/40747033)
+  - [Review] https://crrev.com/c/8343367
+
+#### text-combine-upright-compression reftests stabilization
+- Stabilize text-combine-upright-compression reftests (crbug.com/40527323)
+  - [WIP] https://crrev.com/c/8357089
+
+#### Test expectations cleanup
+- [Merged] Remove redirect expectation from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8281983
+- [Merged] Remove view transitions tests from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8342418
+
+#### content_shell.filter cleanup
+- [Merged] Remove css contain tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8310012
+- [Merged] Remove CSS flexbox tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8310352
+- [Merged] Remove CSS color test from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8301393
+- [Merged] Remove CSS display tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8309374
+- [Merged] Remove CSS highlight tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8310467
+
+### Internal Tests
+
+#### Internal Tests already covered by WPT (crbug.com/485677942)
+- Migrate MSE multiple-attach/sourcebufferlist coverage to WPT
+  - [Merged] https://crrev.com/c/8254912
+- Migrate XHR reuse-after-completion tests to WPT
+  - [Review] https://crrev.com/c/8174325
+
+
 ## Aug 10 - Aug 23, 2026 (Weeks 33-34)
 
 **Scope:** Improving the state of web tests in Chromium-based browsers.
