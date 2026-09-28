@@ -1,5 +1,64 @@
 # SOCBB WPT Tests Igalia Status Updates
 
+## Sept 7 - 20 2026 (weeks 37-28)
+
+**Scope:** Improving the state of web tests in Chromium-based browsers.
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+This is a report covering weeks 37-38. Of highlight, fixes for the canvas direction getter, `fetchLater()` empty body handling, and picture-in-picture disposition handling in headless_shell were all merged, and a large number of stale test expectations and content_shell.filter entries were cleaned up.
+ 
+Sheet: https://docs.google.com/spreadsheets/d/1rceYcaQiR7n6VOF59emYP1KlnGHZ3QizDlxnH-zaKYI
+ 
+### Test Expectations
+ 
+#### Canvas direction getter
+- [Merged] Reflect the stored keyword in the canvas direction getter
+  - https://crrev.com/c/8397490
+  - https://crbug.com/385194416
+#### Allow empty body in fetchLater()
+- [Merged] https://crrev.com/c/8342967
+  - https://crbug.com/507904104
+#### NEW_PICTURE_IN_PICTURE disposition in headless_shell
+- [Merged] Handle NEW_PICTURE_IN_PICTURE disposition in headless_shell
+  - https://crrev.com/c/8396086
+  - https://crbug.com/457475594
+#### text-combine-upright-compression reftests stabilization
+- [Merged] Stabilize text-combine-upright-compression reftests
+  - https://crrev.com/c/8357089
+  - https://crbug.com/40527323
+#### object-position-svg reftests fuzzy matching
+- [Merged] Add fuzzy match to object-position-svg reftests
+  - https://crrev.com/c/8343367
+  - https://crbug.com/40747033
+#### Create-blocked-port.any.js timeout
+- [Merged] Add timeout=long to Create-blocked-port.any.js
+  - https://crrev.com/c/8377701
+  - https://crbug.com/332467110
+#### Stale about:blank reftest expectations
+- [Merged] Remove stale about:blank reftest expectations
+  - https://crrev.com/c/8378523
+  - https://crbug.com/40598320
+#### Label rendering for standalone option and optgroup
+- [WIP] Fix label rendering for standalone option and optgroup
+  - https://crrev.com/c/8417301
+  - https://crbug.com/489882869
+#### Bluetooth permissions-policy tests
+- [WIP] Skip response-consumed check in Bluetooth permissions-policy tests
+  - https://crrev.com/c/8366826
+  - https://crbug.com/492578951
+#### Test expectations cleanup
+- [Merged] Remove CSS backgrounds tests from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8350717
+- [Merged] Remove WASM code caching tests from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8391302
+- [Merged] Remove stale rust xml test expectations - https://chromium-review.googlesource.com/c/chromium/src/+/8364441
+#### content_shell.filter cleanup
+- [Merged] Remove css paint and position tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8365426
+- [Merged] Remove CSS layout API tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8341100
+- [Merged] Remove CSS inline tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8340135
+- [Merged] Remove CSS list and masking tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8341477
+- [Merged] Remove CSS content test from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8341872 
+
+
 ## August 24 - September 6 2026 (Weeks 35-36)
 
 **Scope:** Improving the state of web tests in Chromium-based browsers.
