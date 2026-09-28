@@ -1,5 +1,70 @@
 # SOCBB WPT Infra Igalia Status Updates
 
+## September 7 - 20 2026 (weeks 37-28)
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+
+This is a report covering weeks 37-38. Of highlight, a basic prototype proving the feasibility of a companion Rust tool for TLS testing was completed and the RFC drafted, the find-in-page work in Chrome DevTools continued through review with several dependent CLs, and `test_driver.create_window()` for the script-closable session history work was merged.
+ 
+### Cannot test TLS or TLS-adjacent platform features
+- https://issues.chromium.org/issues/489734010
+- Write basic prototype that proves feasibility of a small companion tool for wpt written in Rust using the `rustls` library:
+  - Create a rust TLS server - https://github.com/web-platform-tests/wpt/commit/0720301251eb0b61f8d9ff7cdbb1910f784e2ee4
+  - Generate various TLS profile certificates from WPT - https://github.com/web-platform-tests/wpt/commit/fd742a25055ca9060e320f08979f324f8ae3e157
+  - Prototype how the installation of the tool could look like - https://github.com/web-platform-tests/wpt/commit/bd2d8c10ff5c77e10304daa4a6b5c2d4901e1151
+  - Add the rust server to wpt serve - https://github.com/web-platform-tests/wpt/commit/e39e71bde135be284e741008829b24089af4a848
+  - Add the rust server to wpt run - https://github.com/web-platform-tests/wpt/commit/9bb75432b934193cc13182230888fbdf88297b69
+- Write the RFC for this change and start internal review
+### Find-in-page in Chrome DevTools
+- Work is in progress
+- Main CL (https://crrev.com/c/8383239) is under review, got quite a few comments and sent some commits. So far only two LGTMs (one nominal one and one essential) of five.
+  - First CL (https://crrev.com/c/8298438) (implementation at Blink level) is likely going to be abandoned
+  - One part of the work was originally proposed as a follow-up CL (https://crrev.com/c/8411430) but then got merged into the main one
+  - One more follow-up CL (https://crrev.com/c/8426044) is proposed to optimise notification interfaces
+- W3C issue (https://github.com/w3c/webdriver-bidi/issues/1157) (WebDriver BiDi proposal) got a few comments, in general considered positive, and what happens in Chromium CLs is consistent with that
+### Support for installable web applications
+- Slow work on preparing the initial proposal of the general approach.
+### Session history check for whether a browsing context is script-closable is not testable
+- https://issues.chromium.org/issues/492218536
+- [In Progress, Non-blocking] Spec discussion threads in WebDriver classic (https://github.com/w3c/webdriver/issues/1972) and WebDriver BiDi (https://github.com/w3c/webdriver-bidi/issues/859)
+- [Merged] Add test_driver.create_window() - https://github.com/web-platform-tests/wpt/pull/62103
+- [In Review] Add test_driver.navigate_to() - https://github.com/web-platform-tests/wpt/pull/62198
+- [Complete] Write initial draft of tests
+- [Blocked by navigate_to and create_window PRs] Open PR for tests
+- Tangential work:
+  - Discussion on a Bugzilla issue related to the wpt preferences profile (https://bugzilla.mozilla.org/show_bug.cgi?id=1938147)
+  - Opened a CRBug for non-initial about:blank issue (https://issues.chromium.org/issues/552741963) uncovered while authoring tests
+### Testing browser-initiated navigation
+- https://issues.chromium.org/issues/489734255
+- [In Progress] This will be addressed as a secondary effect of Step 2 above.
+### Spelling and Grammar error tests need WPT infra support
+- https://issues.chromium.org/issues/40288147
+- [Complete] Write explainer - https://github.com/Igalia/explainers/blob/main/force-spelling-grammar-markers/README.md
+- [Merged] Add experimental setTextMarker and clearTextMarkers commands, Chromium CL - https://chromium-review.googlesource.com/c/chromium/src/+/8359795
+- [In progress] Seek plan approval from WebKit for tentative testdriver commands
+### Multicast UDP Support in wpt
+- https://issues.chromium.org/issues/489736859
+- [In Review, approved by Chromium owner] PR "Add UDPSocket multicast test" - https://github.com/web-platform-tests/wpt/pull/62684
+### WPT reftests for HDR and wide gamut color
+- https://issues.chromium.org/issues/483413433
+- WPT-side RFC and standardization:
+  - [In Review] WPT RFC PR #242 (https://github.com/web-platform-tests/rfcs/pull/242): Awaiting detailed feedback.
+- Chromium implementation:
+  - Continued implementing the Chromium-side color-managed screenshot capture path as a series of dependent CLs for review.
+    - viz: Add a destination color space to copy output - https://chromium-review.googlesource.com/c/chromium/src/+/8417022
+      - Added color conversion for both Skia/GPU and software copy output paths while preserving the existing behavior when no destination color space is requested.
+      - Added coverage for color-space conversion, scaled and unscaled software copies, supported and unsupported configurations, and Mojo serialization.
+    - Implemented and refined the follow-up CL for preserving Display-P3 colors through intermediate render passes.
+      - Kept Display-P3 copy rendering separate from ordinary display rendering and fixed unsafe reuse of GPU render pass backings when switching back to ordinary rendering.
+      - Added regression coverage for backing reuse with P3 and mixed working spaces, and strengthened backdrop filter tests.
+### Mock devices for getUserMedia() tests
+- http://crbug.com/489736656
+- [In Review] Mock Capture Device Automation in Chromium design document - https://docs.google.com/document/d/1nOD_dlQXCQhccRGw2d9jmeFD1u_g2ORc4hMRW7f7Ew0/edit?tab=t.0#heading=h.7nki9mck5t64
+  - Addressed security feedback around resource exhaustion from creating excessive mock cameras
+
+
 ## August 24 - September 6 2026 (Weeks 35-36)
 
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing

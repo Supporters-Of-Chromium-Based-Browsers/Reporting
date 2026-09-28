@@ -1,5 +1,96 @@
 # SOCBB Interop Igalia Status Updates
 
+## Sept 7 - 20 2026 (weeks 37-38)
+
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+### Summary
+This is a report covering weeks 37-38. Of highlight, both the CSP inline event handler fixes were merged, `stroke-dasharray` non-additive interpolation and smooth `text-decoration-thickness` transitions were both merged, and an Intent to Ship was sent for applying `object-fit`/`object-position` to SVG documents in `<object>` and `<embed>`.
+ 
+### CSP check for inline event handler content attributes runs at invocation, not when the attribute is set
+- https://crbug.com/559396684
+- (Test) Split a test into multiple tests to fix timeouts/failures caused by EventWatcherChaining.
+  - Cleaned-up test expectation record: external/wpt/content-security-policy/securitypolicyviolation/targeting.html
+  - [ MERGED ] https://crrev.com/c/8377681
+- (Interop) Apply CSP to inline event handler content attributes when set
+  - [ MERGED ] https://crrev.com/c/8365264
+### Worker/Worklet CSP violations on module tree fetching don't fire securitypolicyviolation event
+- Failures in wpt/content-security-policy/gen/ - https://crbug.com/40612680
+- [ REVIEW ] https://crrev.com/c/8256819 (fix for dedicatedworker/worklet - Addressed review comments / Got +1)
+- [ REVIEW ] https://crrev.com/c/8277072 (fix for sharedworker)
+### Worker constructors throw SecurityError synchronously instead of firing an error event asynchronously for cross-origin scripts
+- https://crbug.com/40676421
+- [ REVIEW ] https://crrev.com/c/8267044 (Addressed review comments / Got +1)
+### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- https://crbug.com/534847486
+- [ REVIEW ] https://crrev.com/c/8090107 (Addressed review comments / Waiting for the next review)
+### (bugfix) BaseAudioContext should not skip `suspended` state upon construction
+- https://crbug.com/40140417
+- [ REVIEW ] https://crrev.com/c/8010828
+### CSS Background interop issues
+- CSS Background shorthands doesn't manage correctly the "initial" values
+  - https://issues.chromium.org/issues/40894424
+  - https://issues.chromium.org/issues/40423296
+  - https://issues.chromium.org/issues/552689413
+  - https://issues.chromium.org/issues/552675460
+  - [ REVIEW ] https://crrev.com/c/8301652
+  - The reviewer has doubts there is enough agreement on the expected behavior among the 3 engines, so he is reluctant to land it as it is
+    - I have submitted a PR for the WPT repo with additional test cases to confirm
+    - https://github.com/web-platform-tests/wpt/pull/62502
+- Keep the author's list length in bg computed values
+  - https://issues.chromium.org/issues/40855581
+  - [ MERGED ] https://crrev.com/c/8357772
+### ReadableStreams.from implementation
+- https://issues.chromium.org/issues/40267032
+- This task depends on the implementation of the 'async sequence' type
+  - https://issues.chromium.org/issues/356891478
+  - [ WIP ] https://crrev.com/c/8427239
+### stroke-dasharray non-additive interpolation
+- [MERGED] Treat stroke-dasharray as non-additive
+  - https://crrev.com/c/8314391
+  - https://crbug.com/507903801
+### Smooth text-decoration-thickness transitions
+- [MERGED] Support smooth text-decoration-thickness transitions
+  - https://crrev.com/c/8335028
+  - https://crbug.com/361393675
+### object-fit and object-position on SVG documents in `<object>` and `<embed>`
+- [INTENT TO SHIP] object-fit and object-position apply to SVG documents in `<object>` and `<embed>`
+  - https://chromestatus.com/feature/4886345347629056
+  - https://groups.google.com/a/chromium.org/d/msgid/blink-dev/6ab09c5b.60d96795.386b54.0022.GAE%40google.com
+  - https://crrev.com/c/8429108
+### IDNA normalization of '<' and '>'
+- [REVIEWING] Let IDNA normalize '<' and '>' before validation
+  - https://crrev.com/c/8319268
+  - https://crbug.com/40256677
+### Logical combination pseudo-classes after `::slotted()`
+- [REVIEWING] Allow logical combination pseudo-classes after ::slotted()
+  - https://crrev.com/c/8428639
+  - https://crbug.com/563075781
+### CDATA and null character handling in SVG and MathML
+- [REVIEWING] Fix CDATA and null character handling in SVG and MathML
+  - https://crrev.com/c/8424304
+  - https://crbug.com/41412594
+  - https://crbug.com/536943787
+### progress() no-clamp and equal endpoints
+- [REVIEWING] Support progress() no-clamp and equal endpoints
+  - https://crrev.com/c/8429224
+  - https://crbug.com/40944203
+### Explicit line-break strictness for unknown languages
+- [REVIEWING] Preserve explicit line-break strictness for unknown languages
+  - https://crrev.com/c/8429844
+  - https://crbug.com/563689650
+### namespaces in `attr()`
+- [IN PROGRESS] Support namespaces in `attr()`
+  - Broke down the change into multiple CLs.
+  - https://crrev.com/c/7931006
+### Memory issue in CSS Animation Iteration Composite
+- [IN PROGRESS] Memory issue in CSS Animation Iteration Composite
+  - Potential memory issues.
+  - https://issues.chromium.org/u/1/issues/488874620
+  - Fix unresolved color handling in gap and SVG paint animations
+    - https://crrev.com/c/8303053
+  - Fix iteration accumulation for nested interpolation values
+    - https://crrev.com/c/8306193
 
 ## August 24 - September 6 2026 (Weeks 34-35)
 
