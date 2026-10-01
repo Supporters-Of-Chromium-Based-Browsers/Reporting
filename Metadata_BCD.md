@@ -1,5 +1,63 @@
 # SOCBB Metadata status updates
 
+## 2026-W38/W39
+
+_Reporting period_: 14 September 2026 – 27 September 2026
+
+### Team Heck B.V.
+
+- Released [v3.39.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.39.0), [v3.40.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.40.0)
+- Infrastructure and tools:
+  - Switch from Mocha to `node:test` test runner ([#4364](https://github.com/web-platform-dx/web-features/pull/4364))
+  - Switch from c8 to Node's built-in coverage reporter ([#4390](https://github.com/web-platform-dx/web-features/pull/4390))
+- Statistics generation:
+  - `stats.ts`: add commit hash and timestamp to output ([#4346](https://github.com/web-platform-dx/web-features/pull/4346))
+  - Statistics: generate a markdown report from `stats.ts` ([#4294](https://github.com/web-platform-dx/web-features/pull/4294))
+  - Statistics: add GitHub Actions workflow ([#4295](https://github.com/web-platform-dx/web-features/pull/4295))
+  - `stats-report.ts`: improve date and commit range formatting ([#4395](https://github.com/web-platform-dx/web-features/pull/4395))
+  - `stats-report.ts`: fix typo in comparison URL ([#4401](https://github.com/web-platform-dx/web-features/pull/4401))
+  - Statistics: post stats weekly ([#4396](https://github.com/web-platform-dx/web-features/pull/4396))
+  - `stats-report.ts`: fix incorrect change in total caniuse IDs ([#4419](https://github.com/web-platform-dx/web-features/pull/4419))
+- Added and revised feature entries
+  - Revise performance timing entries' names and descriptions ([#4278](https://github.com/web-platform-dx/web-features/pull/4278))
+  - Add `initialPermissionStatus` discouraged feature ([#4365](https://github.com/web-platform-dx/web-features/pull/4365))
+  - `import-defer`: include `import.defer()` as part of this feature ([#4385](https://github.com/web-platform-dx/web-features/pull/4385))
+  - Add `named-feature()` feature ([#4272](https://github.com/web-platform-dx/web-features/pull/4272))
+  - `uint8array-base64-hex`: revise description ([#4254](https://github.com/web-platform-dx/web-features/pull/4254))
+  - Add discouraged feature for `trimLeft()` and `trimRight()` ([#4386](https://github.com/web-platform-dx/web-features/pull/4386))
+  - Disambiguate container size queries feature ([#4310](https://github.com/web-platform-dx/web-features/pull/4310))
+  - Add name-only container queries feature ([#4311](https://github.com/web-platform-dx/web-features/pull/4311))
+  - `symbols()` CSS function: revise ID and description ([#4400](https://github.com/web-platform-dx/web-features/pull/4400))
+  - Add gamut mapping feature ([#4392](https://github.com/web-platform-dx/web-features/pull/4392))
+  - Add feature for `Iterator.prototype.join()` ([#4403](https://github.com/web-platform-dx/web-features/pull/4403))
+- Grouped feature entries
+  - Add an `anchor-positioning` group ([#4313](https://github.com/web-platform-dx/web-features/pull/4313))
+  - Group more CSS text features ([#4407](https://github.com/web-platform-dx/web-features/pull/4407))
+- Backfilled compat keys:
+  - `select`: add `HTMLOptionsCollection` compat keys ([#4367](https://github.com/web-platform-dx/web-features/pull/4367))
+  - `outline`: assign `auto` value compat key ([#4408](https://github.com/web-platform-dx/web-features/pull/4408))
+  - `background-position`: backfill compat keys ([#4414](https://github.com/web-platform-dx/web-features/pull/4414))
+  - `clip-path`: backfill `none` value compat key ([#4416](https://github.com/web-platform-dx/web-features/pull/4416))
+  - `font-size`: backfill keyword values compat keys ([#4417](https://github.com/web-platform-dx/web-features/pull/4417))
+  - `text-shadow`: backfill `none` value compat key ([#4409](https://github.com/web-platform-dx/web-features/pull/4409))
+  - `pointer-events`: backfill compat keys ([#4411](https://github.com/web-platform-dx/web-features/pull/4411))
+  - `svg`: backfill compat keys ([#4412](https://github.com/web-platform-dx/web-features/pull/4412))
+- Browser compat data:
+  - `api.HTMLGeolocationElement.initialPermissionStatus`: mark as deprecated ([#30519](https://github.com/mdn/browser-compat-data/pull/30519))
+  - `javascript.builtins.String.trimStart` and `trimEnd`: break out `trim{Left,Right}` ([#30520](https://github.com/mdn/browser-compat-data/pull/30520))
+  - Unmark `css.selectors.-webkit-meter-bar` as deprecated ([#30610](https://github.com/mdn/browser-compat-data/pull/30610))
+  - `api.MouseEvent.layer{X,Y}`: add spec URLs and mark as standard ([#30651](https://github.com/mdn/browser-compat-data/pull/30651))
+  - Add guideline for handling A/B tests and feature rollouts ([#30486](https://github.com/mdn/browser-compat-data/pull/30486))
+- Noteworthy reviews:
+  - Add feature for extended-lifetime shared workers ([#4341](https://github.com/web-platform-dx/web-features/pull/4341)) by @jgraham
+  - Add caniuse links where the IDs are different ([#3301](https://github.com/web-platform-dx/web-features/pull/3301)) by @foolip
+  - Split out type=week|month input types from input-date-time ([#4371](https://github.com/web-platform-dx/web-features/pull/4371)) by @jgraham
+  - Update webdriver-bidi with the new BCD keys ([#2777](https://github.com/web-platform-dx/web-features/pull/2777)) by @captainbrosset
+  - Add HTML setters features ([#4318](https://github.com/web-platform-dx/web-features/pull/4318)) by @tunetheweb
+  - Make CSS animatable data consistent (https://github.com/mdn/browser-compat-data/pull/30417) by @chrisdavidmills
+  - Remove partial_implementation from ariaNotify() for Chromium ([#30571](https://github.com/mdn/browser-compat-data/pull/30571)) by @captainbrosset
+  - fix(lint): apply link replacements at exact offsets ([#30657](https://github.com/mdn/browser-compat-data/pull/30657)) by @caugner
+
 ## 2026-W36/W37
 
 _Reporting period_: 31 August 2026 – 13 September 2026
