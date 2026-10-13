@@ -1,5 +1,60 @@
 # SOCBB Metadata status updates
 
+## 2026-W40/W41
+
+_Reporting period_: 28 September 2026 – 11 October 2026
+
+### Team Heck B.V.
+
+- Releases: [v3.40.1](https://github.com/web-platform-dx/web-features/releases/tag/v3.40.1), [v3.41.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.41.0), [v3.42.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.42.0), [browser-compat-data@v8.1.4](https://github.com/mdn/browser-compat-data/releases/tag/v8.1.4)
+
+- Notable reviews
+  - Remove HTML setters DocumentType APIs ([#4449](https://github.com/web-platform-dx/web-features/pull/4449)) by @tunetheweb
+  - Remove HTML setters DocumentType APIs ([mdn/browser-compat-data#30701](https://github.com/mdn/browser-compat-data/pull/30701)) by @tunetheweb
+  - Update label usage guidance ([mdn/browser-compat-data#30553](https://github.com/mdn/browser-compat-data/pull/30553)) by @caugner
+  - Restructure CSS properties which contain contexts (mdn/browser-compat-data#30613](https://github.com/mdn/browser-compat-data/pull/30613)) by @Elchi3
+  - Data for svg.elements.textPath.method ([mdn/browser-compat-data#30677](https://github.com/mdn/browser-compat-data/pull/30677)) by @Josh-Cena
+
+- Schema
+  - Allow overlapping compat keys ([#4034](https://github.com/web-platform-dx/web-features/pull/4034))
+
+- Infrastructure and tools
+  - Switch from `fdir` to Node.js `fs` globbing builtin ([#4472](https://github.com/web-platform-dx/web-features/pull/4472), [#4489](https://github.com/web-platform-dx/web-features/pull/4489))
+
+- Statistics generation
+  - `stats-report.ts`: add header and footer options ([#4454](https://github.com/web-platform-dx/web-features/pull/4454))
+
+- Added features
+  - Add `scroll-axis-lock` feature ([#4455](https://github.com/web-platform-dx/web-features/pull/4455))
+  - Add wheel events momentum feature ([#4448](https://github.com/web-platform-dx/web-features/pull/4448))
+  - Add `text-decoration-skip-spaces` feature ([#4406](https://github.com/web-platform-dx/web-features/pull/4406))
+  - Add iterator `includes()` method feature ([#4405](https://github.com/web-platform-dx/web-features/pull/4405))
+  - Add feature for joint iteration (`Iterator.zip()` and `Iterator.zipKeyed()`) ([#4404](https://github.com/web-platform-dx/web-features/pull/4404))
+  - Add `substr()` string method feature (discouraged) ([#4393](https://github.com/web-platform-dx/web-features/pull/4393))
+  - Add `CSSPseudoElement` feature ([#4450](https://github.com/web-platform-dx/web-features/pull/4450))
+  - Add a feature for the `X-Frame-Options` header ([#4441](https://github.com/web-platform-dx/web-features/pull/4441))
+  - Add feature for animation event animation accessors ([#4444](https://github.com/web-platform-dx/web-features/pull/4444))
+  - Add retriable module loading feature ([#4387](https://github.com/web-platform-dx/web-features/pull/4387))
+
+- Feature data updates:
+  - `display-contents`: reinstate compat keys and unfreeze status ([#4388](https://github.com/web-platform-dx/web-features/pull/4388))
+  - `subresource-integrity`: fix description typo ([#4481](https://github.com/web-platform-dx/web-features/pull/4481))
+  - Add retriable module loading keys ([mdn/browser-compat-data#30604](https://github.com/mdn/browser-compat-data/pull/30604))
+  - `html.elements.img.sizes.auto`: set Safari as partial due to SVG bug ([mdn/browser-compat-data#30663](https://github.com/mdn/browser-compat-data/pull/30663))
+  - Clean up `AccentColor` and `AccentColorText` data ([mdn/browser-compat-data#30637](https://github.com/mdn/browser-compat-data/pull/30637))
+  - Add subfeatures for `api.Element.pseudo` parameter values ([mdn/browser-compat-data#30700](https://github.com/mdn/browser-compat-data/pull/30700))
+  - `html.elements.progress`: drop needless Firefox notes ([mdn/browser-compat-data#30802](https://github.com/mdn/browser-compat-data/pull/30802))
+  - `html.elements.progress`: iOS renders indeterminate progress bars ([mdn/browser-compat-data#30801](https://github.com/mdn/browser-compat-data/pull/30801))
+
+- Backfilled compat keys
+  - `http11`: backfill `Upgrade` header compat key ([#4434](https://github.com/web-platform-dx/web-features/pull/4434))
+  - `input`: backfill compat key ([#4435](https://github.com/web-platform-dx/web-features/pull/4435))
+  - `multi-column`: backfill `auto` value compat key ([#4436](https://github.com/web-platform-dx/web-features/pull/4436))
+  - `postmessage`: backfill compat key ([#4437](https://github.com/web-platform-dx/web-features/pull/4437))
+  - `border-image`: backfill `border-image-source: none` compat key ([#4438](https://github.com/web-platform-dx/web-features/pull/4438))
+  - `selection-api`: backfill `offset_parameter_optional` compat keys ([#4440](https://github.com/web-platform-dx/web-features/pull/4440))
+  - `svg`: backfill compat key ([#4442](https://github.com/web-platform-dx/web-features/pull/4442))
+
 ## 2026-W38/W39
 
 _Reporting period_: 14 September 2026 – 27 September 2026
