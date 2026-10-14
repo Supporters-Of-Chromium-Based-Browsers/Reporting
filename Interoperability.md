@@ -1,5 +1,122 @@
 # SOCBB Interop Igalia Status Updates
 
+## Sept 21 - October 4 2026 (weeks 39-40)
+
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+### Summary
+This is a report covering weeks 39-40. Of highlight, the change making worker constructors throw a SecurityError synchronously for cross-origin scripts was merged, allowing logical combination pseudo-classes after `::slotted()` and fixing CDATA and null character handling in SVG and MathML were both merged, and work started on Fetch API and Service Worker Cache Storage interop issues, with a fix for ignoring URL fragments when detecting `addAll()` duplicates already merged.
+
+### Worker constructors throw SecurityError synchronously instead of firing an error event asynchronously for cross-origin scripts
+- https://crbug.com/40676421
+- [ MERGED ] https://crrev.com/c/8267044
+
+### CSP check for inline event handler content attributes runs at invocation, not when the attribute is set
+- https://crbug.com/559396684
+- (Test) Fix flaky securitypolicyviolation tests added by https://crrev.com/c/8377681
+  - [ MERGED ] https://crrev.com/c/8460902
+
+### Worker/Worklet CSP violations on module tree fetching don't fire securitypolicyviolation event
+- Failures in wpt/content-security-policy/gen/ - https://crbug.com/40612680
+- [ MERGED ] https://crrev.com/c/8256819 (fix for dedicatedworker/worklet)
+- [ REVIEW ] https://crrev.com/c/8277072 (fix for sharedworker)
+
+### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- https://crbug.com/534847486
+- [ REVIEW ] https://crrev.com/c/8090107 (Addressed review comments / Waiting for the next review)
+
+### (bugfix) BaseAudioContext should not skip `suspended` state upon construction
+- https://crbug.com/40140417
+- [ REVIEW ] https://crrev.com/c/8010828 (addressed review comments / Waiting for the next review)
+
+### CSS Background interop issues
+- CSS Background shorthands doesn't manage correctly the "initial" values
+  - https://issues.chromium.org/issues/40894424
+  - https://issues.chromium.org/issues/40423296
+  - https://issues.chromium.org/issues/552689413
+  - https://issues.chromium.org/issues/552675460
+  - [ REVIEW ] https://crrev.com/c/8301652
+  - The reviewer has doubts there is enough agreement on the expected behavior among the 3 engines, so he is reluctant to land it as it is
+  - I have submitted a PR for the WPT repo with additional test cases to confirm
+    - https://github.com/web-platform-tests/wpt/pull/62502
+    - I've got approval from Firefox and Apple to merge the PR, which confirms the right behavior implemented in the CL, so we only need the approval from Chrome
+
+### ReadableStreams.from implementation
+- https://issues.chromium.org/issues/40267032
+- This task depends on the implementation of the 'async sequence' type
+  - https://issues.chromium.org/issues/356891478
+  - [ MERGED ] https://crrev.com/c/8427239
+
+### Fetch API interop issues
+- Body-disturbance bookkeeping
+  - [ REVIEW ] https://crrev.com/c/8451204
+
+### Service Worker Cache Storage interop issues
+- Ignore URL fragments when detecting addAll() duplicates
+  - https://issues.chromium.org/issues/570354851
+  - [ MERGED ] https://crrev.com/c/8517320
+- Cache Storage keeps only one Vary variant per URL. Analysis and fix plan
+  - https://chromium-review.googlesource.com/c/chromium/src/+/8530166
+  - This change has the goal of removing a line in the TestExpectations file that indicates flakiness in the service-workers/cache-storage/cache-add.https.any.* tests
+  - It requires some changes in the WPT repo
+    - https://github.com/web-platform-tests/wpt/pull/63050
+
+### Test failures related to the `attr` attribute
+- Investigating the test failures related to the 'attr' attribute
+  - There are 2 different bugs related to the failures
+  - Support namespaces in advanced attr() - https://crbug.com/387281256
+    - Already being worked on
+  - Support attr() argument grammar - https://crbug.com/447562303
+    - It seems the feature is being implemented, but behind the CSSArgumentGrammar runtime flag with "test" status; that's why it's not enabled in the wpt.fyi and the test fail
+
+### Logical combination pseudo-classes after `::slotted()`
+- [MERGED] Allow logical combination pseudo-classes after ::slotted()
+  - https://crrev.com/c/8428639
+  - https://crbug.com/563075781
+
+### CDATA and null character handling in SVG and MathML
+- [MERGED] Fix CDATA and null character handling in SVG and MathML
+  - https://crrev.com/c/8424304
+  - https://crbug.com/41412594
+  - https://crbug.com/536943787
+
+### Explicit line-break strictness for unknown languages
+- [MERGED] Preserve explicit line-break strictness for unknown languages
+  - https://crrev.com/c/8429844
+  - https://crbug.com/563689650
+
+### object-fit and object-position on SVG documents in `<object>` and `<embed>`
+- [INTENT TO SHIP] object-fit and object-position apply to SVG documents in `<object>` and `<embed>`
+  - The current implementation does not support cross-origin SVG. Reviewers have requested that support before moving forward.
+  - https://chromestatus.com/feature/4886345347629056
+  - https://groups.google.com/a/chromium.org/d/msgid/blink-dev/6ab09c5b.60d96795.386b54.0022.GAE%40google.com
+  - https://crrev.com/c/8429108
+
+### progress() no-clamp and equal endpoints
+- [REVIEWING] Support progress() no-clamp and equal endpoints
+  - https://crrev.com/c/8429224
+  - https://crbug.com/40944203
+
+### IDNA normalization of '<' and '>'
+- [REVIEWING] Let IDNA normalize '<' and '>' before validation
+  - https://crrev.com/c/8319268
+  - https://crbug.com/40256677
+
+### namespaces in `attr()`
+- [BACKLOG] Support namespaces in `attr()`
+  - Broke down the change into multiple CLs.
+  - https://crrev.com/c/7931006
+
+### Memory issue in CSS Animation Iteration Composite
+- [BACKLOG] Memory issue in CSS Animation Iteration Composite
+  - Potential memory issues.
+  - https://issues.chromium.org/u/1/issues/488874620
+  - Fix unresolved color handling in gap and SVG paint animations
+    - https://crrev.com/c/8303053
+  - Fix iteration accumulation for nested interpolation values
+    - https://crrev.com/c/8306193
+
+
 ## Sept 7 - 20 2026 (weeks 37-38)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.

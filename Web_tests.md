@@ -1,5 +1,48 @@
 # SOCBB WPT Tests Igalia Status Updates
 
+**Scope:** Improving the state of web tests in Chromium-based browsers.
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+## Sept 21 - October 4 2026 (weeks 39-40)
+
+### Summary
+This is a report covering weeks 39-40. Of highlight, fixes for resetting the cached body color and for a background color mismatch in a MathML `::first-letter` test were merged, enabling the SVG `textPath` `side` attribute by default is blocked on a spec update, and a number of stale TestExpectations and content_shell.filter entries were cleaned up.
+
+### Test Expectations
+
+#### Cached body color reset
+- [Merged] Reset cached body color when the last body is removed
+  - https://crrev.com/c/8474572
+  - https://crbug.com/494341468
+
+#### MathML ::first-letter background color mismatch
+- [Merged] Fix background color mismatch in MathML ::first-letter test
+  - https://crrev.com/c/8429005
+  - https://crbug.com/333971751
+
+#### `side` attribute on SVG textPath
+- [WIP] [SVG] Enable the textPath side attribute by default
+  - https://crrev.com/c/8474591
+  - This enabling CL is blocked on that spec update. Filed a PR to add 'side' to the WebIDL: https://github.com/w3c/svgwg/pull/1185
+
+#### Test expectations cleanup
+- [Done] Remove semantics tests from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8367967
+- [Done] Move Mac touch-based test to NeverFixTests - https://chromium-review.googlesource.com/c/chromium/src/+/8462499
+- [Done] Clean up remaining references to --enable-file-cookies - https://chromium-review.googlesource.com/c/chromium/src/+/8464480
+- [Done] Remove stale Linux TestExpectations entries - https://chromium-review.googlesource.com/c/chromium/src/+/8368559
+
+#### content_shell.filter cleanup
+- [Done] Remove CSS overflow and overscroll tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8347510
+- [Done] Remove CSS selectors tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8465206
+- [Done] Remove CSS text decor and transforms tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8467751
+- [Done] Remove CSS motion offset path tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8461600
+- [Done] Remove CSS writing mode tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8461599
+- [Done] Remove cssom-view tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8489654
+- [Done] Remove misc CSS tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8469751
+- [Done] Remove CSS ruby tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8503258
+
+
+
 ## Sept 7 - 20 2026 (weeks 37-28)
 
 **Scope:** Improving the state of web tests in Chromium-based browsers.
