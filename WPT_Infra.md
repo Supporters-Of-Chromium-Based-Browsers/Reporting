@@ -1,5 +1,68 @@
 # SOCBB WPT Infra Igalia Status Updates
 
+## Sept 21 - October 4 2026 (weeks 39-40)
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+
+This is a report covering weeks 39-40. Of highlight, DevTools support for native find-in-page landed in Chromium, `test_driver.navigate_to()` and the script-closable test were merged, resolving the session history testability issue, the UDPSocket multicast test was merged and enabled in content_shell, and work continued on the color-managed screenshot capture path and mock camera isolation between CDP sessions.
+
+Sheet: https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Support native find-in-page in WPT
+- DevTools support in Chromium is landed, one follow-up CL (not part of the original scope) is on review
+  - [ MERGED ] https://crrev.com/c/8383239
+  - [ MERGED ] https://crrev.com/c/8426044
+  - [ REVIEW ] https://crrev.com/c/8480434
+- Prototyped the WebDriver spec locally, but this is not yet approved by the working group, so cannot send a PR at this moment
+
+### Installable web apps in WPT
+- Mostly stale, did some minor research, commented some discussions
+
+### Session history check for whether a browsing context is script-closable is not testable
+- [Fixed] https://issues.chromium.org/issues/492218536
+- [In Progress, Non-blocking] Spec discussion threads in WebDriver classic (https://github.com/w3c/webdriver/issues/1972) and WebDriver BiDi (https://github.com/w3c/webdriver-bidi/issues/859)
+- [Merged] Add test_driver.create_window() - https://github.com/web-platform-tests/wpt/pull/62103
+- [Merged] Add test_driver.navigate_to() - https://github.com/web-platform-tests/wpt/pull/62198
+- [Merged] Test script-closable - https://github.com/web-platform-tests/wpt/pull/63055
+
+### Testing browser-initiated navigation
+- https://issues.chromium.org/issues/489734255
+- [Merged] Add test_driver.navigate_to() - https://github.com/web-platform-tests/wpt/pull/62198
+
+### Spelling and Grammar error tests need WPT infra support
+- https://issues.chromium.org/issues/40288147
+- [Complete] Write explainer - https://github.com/Igalia/explainers/blob/main/force-spelling-grammar-markers/README.md
+- [Merged] Add experimental setTextMarker and clearTextMarkers commands, Chromium CL - https://chromium-review.googlesource.com/c/chromium/src/+/8359795
+- [In progress, blocked by external review] Seek plan approval from WebKit for tentative testdriver commands
+- [Draft, Blocked by above] Add testdriver.set_test_marker and clear_text_markers - https://github.com/web-platform-tests/wpt/pull/62922
+
+### Multicast UDP Support in wpt
+- [Fixed] https://issues.chromium.org/issues/489736859
+- [Merged] PR "Add UDPSocket multicast test" - https://github.com/web-platform-tests/wpt/pull/62684
+- [Merged] CL "Run UDPSocket multicast in content_shell" - https://chromium-review.googlesource.com/c/chromium/src/+/8490311
+
+#### Testing for non-standard Ports
+- https://issues.chromium.org/issues/489735777
+- [In Review] PR "Fetch: make the bad ports test observe blocked requests" - https://github.com/web-platform-tests/wpt/pull/62882
+
+### WPT reftests for HDR and wide gamut color
+- https://issues.chromium.org/issues/483413433
+- WPT-side RFC and standardization:
+  - [In Review] WPT RFC PR #242 (https://github.com/web-platform-tests/rfcs/pull/242): Followed up to request further review and recently received feedback. Currently investigating how to address the feedback in the next revision.
+- Chromium implementation:
+  - Continued implementing the Chromium-side color-managed screenshot capture path as a series of dependent CLs for review.
+    - viz: Add a destination color space to copy output - https://chromium-review.googlesource.com/c/chromium/src/+/8417022
+    - viz: Preserve Display-P3 in intermediate copy draws - https://chromium-review.googlesource.com/c/chromium/src/+/8435476
+    - content: Carry the requested color space through surface screenshots - https://chromium-review.googlesource.com/c/chromium/src/+/8499715
+    - DevTools: Allow requesting a color space for PNG screenshots - https://chromium-review.googlesource.com/c/chromium/src/+/8499775
+
+### Mock devices for getUserMedia() tests
+- http://crbug.com/489736656
+- Shared the Mock Capture Device Automation in Chromium design document (https://docs.google.com/document/d/1nOD_dlQXCQhccRGw2d9jmeFD1u_g2ORc4hMRW7f7Ew0/edit?tab=t.0#heading=h.7nki9mck5t64) on chromium-design-doc to request broader feedback.
+- [WIP] Isolate mock camera IDs between CDP sessions - https://chromium-review.googlesource.com/c/chromium/src/+/8505976 : Prepared an initial follow-up patch to give mock-camera device IDs a separate namespace for each CDP session.
+
 ## September 7 - 20 2026 (weeks 37-28)
 
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
