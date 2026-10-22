@@ -1,5 +1,50 @@
 # SOCBB Interop Igalia Status Updates
 
+## October 5 - 18 2026 (weeks 41-42)
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+This is a report covering weeks 41-42. Of highlight, reviewer feedback on the WPT RFC for HDR and wide gamut color reftests was addressed with several proposal revisions, the CL isolating mock camera IDs between CDP sessions landed, the TLS testing RFC was updated after internal review, and work started on making classic scrollbars testable.
+
+Sheet: https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Support native find-in-page in WPT
+- Almost no progress since previous report
+  - https://crrev.com/c/8480434 is still on review, I pinged the reviewers but did not yet get the approval
+  - Got in touch with the WPT community, registered for TPAC where they plan a meeting to discuss proposals, and there will be a point related to this issue
+
+### Installable web apps in WPT
+- Participated in some discussions in WPT and W3C communities
+
+### Make it possible to test classic scrollbars
+- https://crrev.com/c/8549633 is on review
+
+### WPT reftests for HDR and wide gamut color
+- https://issues.chromium.org/issues/483413433
+- WPT-side RFC and standardization:
+  - [In Review] WPT RFC PR #242 (https://github.com/web-platform-tests/rfcs/pull/242): Investigated the reviewer feedback and prepared revisions to the proposal.
+    - [Done] Clarified the distinction between input formats covered by tests and supported screenshot output color spaces, including a proposed PQ reference white of 203 nits.
+    - [Done] Revised the capture path description to accommodate both WebDriver Classic and WebDriver BiDi, and opened WebDriver Classic issue #1978 (https://github.com/w3c/webdriver/issues/1978)
+    - [Done] Clarified the required rendering setup and capture-error handling, distinguishing unsupported or invalid captures from rendering failures.
+    - [WIP] Refining the fuzzy comparison proposal, including comparison units, differing-pixel counts, alpha handling, and test annotations
+- Chromium implementation:
+  - The following CLs need further updates to address the RFC feedback:
+    - viz: Add a destination color space to copy output - https://chromium-review.googlesource.com/c/chromium/src/+/8417022
+    - viz: Preserve Display-P3 in intermediate copy draws - https://chromium-review.googlesource.com/c/chromium/src/+/8435476
+    - content: Carry the requested color space through surface screenshots - https://chromium-review.googlesource.com/c/chromium/src/+/8499715
+    - DevTools: Allow requesting a color space for PNG screenshots - https://chromium-review.googlesource.com/c/chromium/src/+/8499775
+
+### Mock devices for getUserMedia() tests
+- http://crbug.com/489736656
+- [Landed] Isolate mock camera IDs between CDP sessions - https://chromium-review.googlesource.com/c/chromium/src/+/8505976
+- [WIP] [DevTools] Preserve mock cameras when the same ID is added again - https://chromium-review.googlesource.com/c/chromium/src/+/8609547
+
+### Cannot test TLS or TLS-adjacent platform features
+- https://issues.chromium.org/issues/489734010
+- Address internal review feedback for the RFC for this change.
+- Update the prototype to match the new changes in the RFC. Added a few fixes for found bugs.
+
 ## Sept 21 - October 4 2026 (weeks 39-40)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
