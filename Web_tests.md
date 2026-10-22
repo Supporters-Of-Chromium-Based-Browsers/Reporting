@@ -3,6 +3,63 @@
 **Scope:** Improving the state of web tests in Chromium-based browsers.
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
 
+## October 5 - 18 2026 (weeks 41-42)
+
+**Scope:** Improving the state of web tests in Chromium-based browsers.
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+This is a report covering weeks 41-42
+Of highlight, the SVG `textPath` `side` attribute was enabled by default, fixes for `svgView()` attribute parsing, fieldset content sizing, and image input width/height were all merged, and several more stale TestExpectations and content_shell.filter entries were cleaned up.
+
+Sheet: https://docs.google.com/spreadsheets/d/1rceYcaQiR7n6VOF59emYP1KlnGHZ3QizDlxnH-zaKYI
+
+### Test Expectations
+
+#### `side` attribute on SVG textPath
+- [Merged] [SVG] Enable the textPath side attribute by default - https://crrev.com/c/8474591
+  - ChromeStatus: Feature: SVG textPath side attribute - https://chromestatus.com/feature/5422782593761280
+  - Spec PR to add 'side' to the WebIDL: https://github.com/w3c/svgwg/pull/1185
+
+#### clip-text table cell WPT ref
+- [Merged] Fix horizontal offset in clip-text table cell WPT ref - https://crrev.com/c/8555797
+  - https://crbug.com/503018958
+  - Added a missing offset to reference file.
+
+#### svgView() attribute parsing
+- [Merged] Allow whitespace around svgView() attributes - https://crrev.com/c/8565458
+  - https://crbug.com/552539605
+  - Fixed svgView parsing failures by allowing whitespace around attributes and semicolons.
+
+#### Fieldset content sizing
+- [Merged] Pass block-size to fieldset content in min/max sizing - https://crrev.com/c/8522097
+  - https://crbug.com/368131302
+  - Fixed a sizing issue in fieldset content where images with percentage were not sized correctly.
+
+#### ImageInputType Width() and Height()
+- [Merged] Update layout first in ImageInputType::Width() and Height() - https://crrev.com/c/8583535
+  - https://crbug.com/562529675
+  - Changed the order to update style and layout first before checking the layout object, just like HTMLImageElement.
+
+#### .class selectors in unknown XML namespaces
+- [WIP] Match .class selectors on elements in unknown XML namespaces - https://crrev.com/c/8577217
+  - https://crbug.com/41276987
+  - The reviewer mentioned past performance issues. Further investigation needed.
+
+#### Test expectations cleanup
+- [Merged] Remove obsolete digital-credentials/webdriver test expectations - https://crrev.com/c/8522861 (https://crbug.com/526682330)
+- [Merged] Remove CSS text decor tests from TestExpectations - https://chromium-review.googlesource.com/c/chromium/src/+/8574487
+- [Merged] Clean up encoding test in TestExpectations and others - https://chromium-review.googlesource.com/c/chromium/src/+/8575059
+- [Merged] Remove stale Linux TestExpectations entry for reuse-web-bundle-resource - https://chromium-review.googlesource.com/c/chromium/src/+/8245900
+
+#### content_shell.filter cleanup
+- [Merged] Remove misc content_shell.filter tests - https://chromium-review.googlesource.com/c/chromium/src/+/8574781
+- [Merged] Remove NodeList tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8542874
+- [Merged] Remove shape outside tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8463639
+- [Merged] Remove i18n tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8542196
+
+
+
 ## Sept 21 - October 4 2026 (weeks 39-40)
 
 ### Summary

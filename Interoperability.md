@@ -1,5 +1,110 @@
 # SOCBB Interop Igalia Status Updates
 
+## October 5 - 18 2026 (weeks 41-42)
+
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+### Summary
+This is a report covering weeks 41-42. Of highlight, the BaseAudioContext suspended-state CL was merged, several Fetch API body-disturbance fixes and the Service Worker Cache Storage `Vary` fix were merged, new CLs were opened for the `object-fit`/`object-position` SVG work, and the Web IDL `async_sequence<T>` type needed for `ReadableStream.from` is under review.
+
+### (bugfix) BaseAudioContext should not skip suspended state upon construction
+- https://crbug.com/40140417
+- [ MERGED ] https://crrev.com/c/8010828
+- Found some issues on fulfilling/rejecting promises of consecutive pause/resume operations when feature enabled. Prepare CL and activate for review:
+  - [ REVIEW ] https://crrev.com/c/8584016
+
+### CSP script-src 'trusted-types-eval' on timers
+- https://crbug.com/388437274
+- [ MERGED ] (test) Update wpt tests for CSP script-src 'trusted-types-eval'
+  - https://crrev.com/c/8529548 (Addressed the review comments)
+- [ MERGED ] (test) Add WPT tests for 'trusted-types-eval' with Trusted Types policies
+  - https://crrev.com/c/8555857 (Tests for bugs on trusted types check order / activated for review)
+- [ ABANDONED ] Apply CSP script-src 'trusted-types-eval' to setTimeout and setInterval
+  - https://crrev.com/c/8529549 (Reviewer uploaded new CL after the review / abandoned)
+- [ ABANDONED ] Run the trusted types check before 'trusted-types-eval' for eval()
+  - https://crrev.com/c/8555877 (Prepared to address the review comment / abandoned after the new CL from reviewer)
+
+### Worker/Worklet CSP violations on module tree fetching don't fire securitypolicyviolation event
+- Failures in wpt/content-security-policy/gen/ - https://crbug.com/40612680
+- [ REVIEW ] https://crrev.com/c/8277072 (fix for sharedworker)
+  - Addressed review comments.
+  - Got review comments about the overall direction - need to consider reporting API as well as dispatching violation event.
+  - Asked reviewer's preference on how to handle both issues (should handle event dispatching and reporting in a single CL or can fix reporting separately after land event dispatching fix)
+  - Preparing wpt tests to check reporting api for this case.
+
+### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- Waiting for the review response
+- https://crbug.com/534847486
+- [ REVIEW ] https://crrev.com/c/8090107
+
+### Fetch API interop issues
+- Body-disturbance bookkeeping
+  - [ MERGED ] https://crrev.com/c/8440398
+  - [ MERGED ] https://crrev.com/c/8451204
+- Fix the stale bodyUsed assertion in request-disturbed.any.js
+  - [ MERGED ] https://crrev.com/c/8562797
+- Avoid body reads to be run in nested microtasks
+  - [ MERGED ] https://crrev.com/c/8563698
+- Ensure Response.redirect() uses UTF-8 encoding
+  - [ REVIEW ] https://crrev.com/c/8558399
+
+#### Service Worker Cache Storage interop issues
+- Ignore URL fragments when detecting addAll() duplicates
+  - https://issues.chromium.org/issues/570354851
+  - [ MERGED ] https://crrev.com/c/8517320
+- ServiceWorker Cache API fails to observe correct Vary behavior
+  - [ MERGED ] https://crrev.com/c/8530166
+  - This fix requires some changes in the WPT repo
+    - [ REVIEW ] https://github.com/web-platform-tests/wpt/pull/63050
+  - Once the WPT PR#63050 is merged we can get rid of a flakiness entry in the TestExpectations
+
+### ReadableStream.from implementation
+- Implement the 'from' function of the ReadableStream interface
+  - https://issues.chromium.org/issues/40267032
+- This task depends on the implementation of the 'async sequence' type
+  - https://issues.chromium.org/issues/356891478
+  - Add the Web IDL `async_sequence<T>` type to the IDL front end
+    - [ REVIEW ] https://crrev.com/c/8549013
+
+### CSS Background interop issues
+- Preparing the intent-to-ship request of the "Background layer count independence" feature
+  - https://chromestatus.com/feature/5144333908049920
+
+### Preliminary analysis of test failures in WPT folders
+- Preliminary analysis of a bunch of test failures in a few WPT folders
+  - css/css-sizing, cookiestore
+
+### object-fit and object-position on SVG documents in `<object>` and `<embed>`
+- [INTENT TO SHIP] object-fit and object-position apply to SVG documents in `<object>` and `<embed>`
+  - The current implementation does not support cross-origin SVG. Reviewers have requested that support before moving forward.
+  - https://chromestatus.com/feature/4886345347629056
+  - https://groups.google.com/a/chromium.org/d/msgid/blink-dev/6ab09c5b.60d96795.386b54.0022.GAE%40google.com
+  - I have opened four CLs for different aspects of the implementation. Currently coordinating with owners.
+    - https://crrev.com/c/8547836 : small corner case with the current implementation.
+    - https://crrev.com/c/8597046 : a11y issue when `SVGEmbeddedAsReplacedElement` is enabled.
+    - https://crrev.com/c/8585219 : issues when `SVGEmbeddedAsReplacedElement` is enabled.
+    - https://crrev.com/c/8605547 : support out-of-process SVG.
+
+### progress() no-clamp and equal endpoints
+- [REVIEWING] Support progress() no-clamp and equal endpoints
+  - Updated https://crrev.com/c/8429224 following feedback
+  - https://crbug.com/40944203
+
+### IDNA normalization of '<' and '>'
+- [REVIEWING] Let IDNA normalize '<' and '>' before validation
+  - Addressing feedback at https://crrev.com/c/8319268
+  - https://crbug.com/40256677
+
+### namespaces in `attr()`
+- [BACKLOG] Support namespaces in `attr()`
+  - Broke down the change into multiple CLs.
+  - https://crrev.com/c/7931006
+
+### Memory issue in CSS Animation Iteration Composite
+- [BACKLOG] Memory issue in CSS Animation Iteration Composite
+  - Review potential memory issues.
+  - https://issues.chromium.org/u/1/issues/488874620
+
 ## Sept 21 - October 4 2026 (weeks 39-40)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
