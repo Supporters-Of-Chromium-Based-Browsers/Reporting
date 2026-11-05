@@ -3,10 +3,51 @@
 **Scope:** Improving the state of web tests in Chromium-based browsers.
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
 
-## October 5 - 18 2026 (weeks 41-42)
+## October 19 - Nov 1 2026 (weeks 43-44)
 
-**Scope:** Improving the state of web tests in Chromium-based browsers.
-**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+### Summary
+Hello, this is a report covering weeks 43-44. Of highlight, support for `text-overflow` as an SVG presentation attribute and matching `.class` selectors on elements in unknown XML namespaces were both merged, a failing `before-as-flex-container` test was rewritten, and more content_shell.filter entries were cleaned up.
+
+Sheet: https://docs.google.com/spreadsheets/d/1rceYcaQiR7n6VOF59emYP1KlnGHZ3QizDlxnH-zaKYI
+
+### Test Expectations
+
+#### text-overflow as an SVG presentation attribute
+- [Merged] Support text-overflow as an SVG presentation attribute - https://crrev.com/c/8607649
+  - https://crbug.com/40676629, https://crbug.com/550481743
+  - Mapped the text-overflow attribute to its CSS property so it applies as a presentation attribute on SVG elements.
+
+#### before-as-flex-container WPT test
+- [Merged] Fix before-as-flex-container WPT test - https://crrev.com/c/8619573
+  - https://crbug.com/442769076
+  - Rewrote the test, which failed in all browsers due to incorrect expectations.
+
+#### .class selectors in unknown XML namespaces
+- [Merged] Match .class selectors on elements in unknown XML namespaces - https://crrev.com/c/8577217
+  - https://crbug.com/41276987
+  - Allowed class selectors to match elements in any XML namespace, and confirmed no perf regression with Pinpoint.
+
+#### mix-blend-mode WPT tests
+- [Review] Fix incorrect mix-blend-mode WPT tests - https://crrev.com/c/8666338
+  - https://crbug.com/40115725
+  - Fixed wrong expected colors and added a missing border-style to the tests.
+
+#### Test expectations cleanup
+- [Done] Reland "Freeze changed scrollbars when sizing position-try candidates" - https://chromium-review.googlesource.com/c/chromium/src/+/8670605
+- [Done] Clean up document.domain tests after deprecation - https://chromium-review.googlesource.com/c/chromium/src/+/8563721
+- [Done] Clean up encoding test in TestExpectations and others - https://chromium-review.googlesource.com/c/chromium/src/+/8575059
+
+#### content_shell.filter cleanup
+- [Done] Remove canvas offscreen tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8305193
+- [Done] Remove scroll animations tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8633082
+- [Done] Remove webcodec tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8633043
+- [Done] Remove wai-aria tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8634425
+- [Done] Remove mathml tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8634641
+- [Done] Remove cross origin opener policy tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8635053
+- [Done] Remove editing tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8633661
+- [Done] Remove pointerevents from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8280605
+
+## October 5 - 18 2026 (weeks 41-42)
 
 ### Summary
 This is a report covering weeks 41-42
