@@ -1,5 +1,116 @@
 # SOCBB Interop Igalia Status Updates
 
+## SOCBB Interop Igalia Status Update October 19 - Nov 1 2026 (weeks 43-44)
+
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+Hello, this is a report covering weeks 43-44. Of highlight, the intent to ship for the CSSBackgroundLayerCountIndependence feature was sent and its CL merged, `progress()` no-clamp and equal endpoints support was merged, two of the `object-fit`/`object-position` SVG CLs were merged, and the WPT changes needed for the Service Worker Cache Storage `Vary` fix and the CSS Background shorthand fix were merged.
+
+### object-fit and object-position on SVG documents in `<object>` and `<embed>`
+- [INTENT TO SHIP] object-fit and object-position apply to SVG documents in `<object>` and `<embed>`
+  - The current implementation does not support cross-origin SVG. Reviewers have requested that support before moving forward.
+  - https://crbug.com/41302806
+  - https://chromestatus.com/feature/4886345347629056
+  - https://groups.google.com/a/chromium.org/d/msgid/blink-dev/6ab09c5b.60d96795.386b54.0022.GAE%40google.com
+  - Split into the following CLs:
+    - [MERGED] https://crrev.com/c/8547836 : small corner case with the current implementation.
+    - [MERGED] https://crrev.com/c/8585219 : issues when `SVGEmbeddedAsReplacedElement` is enabled.
+    - [REVIEW] https://crrev.com/c/8597046 : a11y issue when `SVGEmbeddedAsReplacedElement` is enabled.
+    - [REVIEW] https://crrev.com/c/8605547 : support out-of-process SVG.
+
+### SVG intrinsic sizing in an image context
+- [INTENT TO SHIP] SVG intrinsic sizing in an image context
+  - Merged some time ago as experimental, fixed 80 WPT tests.
+  - Owners have requested to enable it by default.
+  - https://crbug.com/40898537
+
+### progress() no-clamp and equal endpoints
+- [MERGED] Support progress() no-clamp and equal endpoints
+  - Updated https://crrev.com/c/8429224 following feedback
+  - https://crbug.com/40944203
+
+### IDNA normalization of '<' and '>'
+- [REVIEWING, +1] Let IDNA normalize '<' and '>' before validation
+  - Addressing feedback at https://crrev.com/c/8319268
+  - https://crbug.com/40256677
+
+### Tab and newline in KURL::SetProtocol()
+- [REVIEWING] Remove tab and newline in KURL::SetProtocol()
+  - https://crrev.com/c/8700860
+  - https://crbug.com/40889369
+
+### namespaces in `attr()`
+- [BACKLOG] Support namespaces in `attr()`
+  - Broke down the change into multiple CLs.
+  - https://crrev.com/c/7931006
+
+### Memory issue in CSS Animation Iteration Composite
+- [BACKLOG] Memory issue in CSS Animation Iteration Composite
+  - Review potential memory issues.
+  - https://crbug.com/488874620
+
+### Worker/Worklet CSP violations on module tree fetching don't fire securitypolicyviolation event
+- Failures in wpt/content-security-policy/gen/ - https://crbug.com/40612680
+- [ REVIEW ] https://crrev.com/c/8277072 (fix for sharedworker)
+  - Got review comments / Addressing them.
+    - Uploaded new patchset that follows the new direction.
+    - Got additional review comments on the new patchset / preparing the fixes as separate CLs:
+      - Omit unknown source code location in inspector CSP issue
+        - [ MERGED ] https://crrev.com/c/8657479
+      - [WIP] Clean up unused method argument/mojo interface field.
+      - [WIP] Fix existing error on log level for report-only violation in the frame host.
+      - [WIP] Share the common logic to report violation to outside context.
+      - [WIP] Dispatch the violation event for the module fetch before notifying the fetch failure.
+
+### CSP check for inline event handler content attributes runs at invocation, not when the attribute is set
+- https://crbug.com/559396684, https://crbug.com/576126165
+- (regression from CL 8365264) Skip CSP check on inline handler set in document without window
+  - [ MERGED ] https://crrev.com/c/8637073
+
+### BaseAudioContext should not skip suspended state upon construction
+- https://crbug.com/40140417
+- (bugfix) Settle AudioContext suspend() and resume() promises in call order
+  - [ REVIEW ] https://crrev.com/c/8584016
+  - Got review comments / Addressing them.
+
+### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- Waiting for the review response
+- https://crbug.com/534847486
+- [ REVIEW ] https://crrev.com/c/8090107
+
+### Service Worker Cache Storage interop issues
+- Landed the WPT PR#63050 with the changes in the vary.py resource file
+  - [ MERGED ] https://github.com/web-platform-tests/wpt/pull/63050
+  - This will allow us to remove a flakiness entry in the TestExpectations file for the cache-add.https.any.* tests
+- Removing the flakiness entry from the TestExpectations file
+  - [ REVIEW ] https://crrev.com/c/8703959
+
+### Streams API from() method
+- Implementation of the async_sequence type
+  - [ MERGED ] https://crrev.com/c/8549013
+  - [ REVIEW ] https://crrev.com/c/8630828
+
+### css-color WPT failures
+- Investigating the WPT failures in the css-color folder
+- color-mix should allow one or more values
+  - [ REVIEW ] https://crrev.com/c/8664798
+    - This is a refactoring in preparation for the actual fix
+
+### CSS Background interop issues
+- The changes in the WPT has been merged in the PR#62502
+  - [ MERGED ] https://github.com/web-platform-tests/wpt/pull/62502
+- Waiting now for the WPT sync to land the CL with the Chrome fix
+  - [ REVIEW ] https://crrev.com/c/8301652/
+- Intent-to-ship of the CSSBackgroundLayerCountIndependence feature
+  - https://groups.google.com/a/chromium.org/g/blink-dev/c/8m9e2jKtuhg/m/YWoLXWiLCAAJ
+  - [ MERGED ] https://crrev.com/c/8683743
+
+### Fetch API interop issues
+- Empty Location on a followed redirect
+  - [ MERGED ] https://crrev.com/c/8677580
+  - Refactoring in preparation of the actual fix
+
+
 ## October 5 - 18 2026 (weeks 41-42)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
