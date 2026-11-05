@@ -1,5 +1,77 @@
 # SOCBB WPT Infra Igalia Status Updates
 
+## October 19 - Nov 1 2026 (weeks 43-44)
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+
+Hello, this is a report covering weeks 43-44. Of highlight, native find-in-page support landed upstream, the TLS testing RFC was updated and sent for review, new testdriver commands were added for terminating service workers and delivering push messages, and work progressed on the aamtests timeouts, click automation, and the WPT RFC for HDR and wide gamut color reftests.
+
+### WPT reftests for HDR and wide gamut color
+- WPT-side RFC and standardization:
+  - [In Review] WPT RFC PR #242 (https://github.com/web-platform-tests/rfcs/pull/242): Continued addressing reviewer feedback and refining the proposal.
+    - Refined fuzzy-comparison rules for different bit depths and clarified `HTML` and `.ini` annotations.
+    - Clarified that the comparison rules could also support `AVIF` tests, while keeping `JPEG XL` as the first use case.
+    - Added a requirement for future gain-map tests and their references to use the same target HDR headroom. Gain-map testing remains follow-up work.
+
+### Mock devices for getUserMedia() tests
+- [In Review] [DevTools] Wait for mock camera registration before replying - https://chromium-review.googlesource.com/c/chromium/src/+/8609547
+  - Implemented `Browser.addMockCamera` waits for the video capture service to confirm registration before reporting success.
+  - Addressing review feedback to reject duplicate camera IDs without replacing existing cameras or interrupting pending registrations. Also refining service-disconnection handling and updating the related tests.
+
+### Page zoom / device pixel ratio testing
+- [In Review] [testdriver] Expose BiDi browsingContext.setViewport to regular WPT tests - https://github.com/web-platform-tests/wpt/pull/59265: Requested another review of the updated code after addressing the previous feedback. Awaiting a response.
+
+### Support native find-in-page in WPT
+- https://issues.chromium.org/issues/492228028
+- https://crrev.com/c/8480434 is landed, the first edition of the feature is complete in the upstream
+- Attended the discussion at TPAC and got feedback: to be worth being supported in the automation, commands should return results that could be used by general purpose applications.
+- Prototyped the next step: return results of a find operation
+
+### Installable web apps in WPT
+- https://issues.chromium.org/issues/494012779
+- No progress
+
+### Make it possible to test classic scrollbars
+- https://issues.chromium.org/issues/570412107
+- https://crrev.com/c/8549633 has progressed a bit but is still on review
+
+### Timeouts in aamtests
+- https://issues.chromium.org/issues/565453068
+- Investigated the problem, did some experiments, identified the main reason of slow startup, asked the Chrome team to update VM images
+- Proposed a fallback, https://github.com/web-platform-tests/wpt/pull/64260 is on review
+
+### Automate clicks in tests
+- https://issues.chromium.org/issues/570354842
+- https://github.com/web-platform-tests/wpt/pull/64033 is on review
+
+### Cannot test TLS or TLS-adjacent platform features
+- https://issues.chromium.org/issues/489734010
+- Updated the RFC with the review feedback and sent it for review: https://github.com/web-platform-tests/rfcs/pull/247
+- Rebased and squashed the prototype on https://github.com/eerii/wpt/tree/tls-rfc-prototype. Fixed the certificate matrix for the WPT CA name constraints, moved the profiles to permitted hosts, made the default profile use the pregenerated leaf, and made the not yet valid leaf time bounded.
+- Prepared two follow up candidates for the hotlist, Chromium CA trust for negative certificate tests (https://issues.chromium.org/u/1/issues/581081400) and TLS record layer faults (https://issues.chromium.org/u/1/issues/581081905).
+
+### Exposing vendor specific API for testing (e.g. terminateServiceWorker)
+- https://issues.chromium.org/issues/576728230
+- Added `test_driver.terminate_service_worker(scope)` with a browser wide fallback, the Chromium `ServiceWorker.stopWorkerForScope` command, and the ChromeDriver `DELETE /session/{id}/serviceworker` route. The tests cover restart and scope isolation.
+- The WPT PR is open at https://github.com/web-platform-tests/wpt/pull/64581 and the Chromium CL is uploaded at https://crrev.com/c/8713098.
+
+### Infrastructure needs for testing the Push API
+- https://issues.chromium.org/issues/576760751
+- Added `test_driver.deliver_push_message(scope, data)` and the Chromium `ServiceWorker.deliverPushMessageForScope` command. This removes the need for a push service or the internal registration ID.
+- Start working on browser tests.
+
+### Cross-browser example for testing forced orientation angles
+- https://issues.chromium.org/issues/568011884
+- Merged https://github.com/web-platform-tests/wpt/pull/63425 which re-enables test with forced screen orientation angle using `test_driver.bidi.emulation.set_screen_orientation_override`
+
+### Add download events to testdriver
+- https://issues.chromium.org/issues/570039623
+- Opened PR that adds `test_driver.bidi.browsing_context` download events: https://issues.chromium.org/issues/570039623
+
+
+
 ## October 5 - 18 2026 (weeks 41-42)
 
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
