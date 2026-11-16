@@ -1,5 +1,107 @@
 # SOCBB Metadata status updates
 
+## 2026-W44/W45
+
+_Reporting period_: 26 October 2026 – 8 November 2026
+
+### Team Heck B.V.
+
+- Releases: [v3.45.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.45.0)
+
+- Added feature entries:
+  - Add `resizable` media query feature ([#4579](https://github.com/web-platform-dx/web-features/pull/4579))
+  - Add window resizing feature ([#4571](https://github.com/web-platform-dx/web-features/pull/4571))
+  - Add `display-state` media query feature ([#4578](https://github.com/web-platform-dx/web-features/pull/4578))
+  - Add `window-management` group ([#4599](https://github.com/web-platform-dx/web-features/pull/4599))
+
+- Backfilled compat keys:
+  - `wasm-multi-memory`: backfill compat keys ([#4570](https://github.com/web-platform-dx/web-features/pull/4570))
+  - `flexbox`: backfill compat keys ([#4569](https://github.com/web-platform-dx/web-features/pull/4569))
+  - `focusgroup`: backfill compat keys ([#4581](https://github.com/web-platform-dx/web-features/pull/4581))
+  - `grid`: backfill compat keys ([#4585](https://github.com/web-platform-dx/web-features/pull/4585))
+  - `gap-decorations`: backfill compat keys ([#4584](https://github.com/web-platform-dx/web-features/pull/4584))
+  - `focusgroup`: backfill compat keys ([#4590](https://github.com/web-platform-dx/web-features/pull/4590))
+  - `interest-invokers`: backfill compat keys ([#4589](https://github.com/web-platform-dx/web-features/pull/4589))
+  - `svg`: backfill compat keys ([#4594](https://github.com/web-platform-dx/web-features/pull/4594))
+  - `wasm-typed-fun-refs`: backfill compat keys ([#4593](https://github.com/web-platform-dx/web-features/pull/4593))
+  - `wasm-garbage-collection`: backfill compat keys ([#4592](https://github.com/web-platform-dx/web-features/pull/4592))
+  - `wasm-reference-types`: backfill compat keys ([#4591](https://github.com/web-platform-dx/web-features/pull/4591))
+  - `html-setters` and `html-streaming-setters`: backfill compat keys ([#4583](https://github.com/web-platform-dx/web-features/pull/4583))
+  - `notifications`: backfill compat key ([#4582](https://github.com/web-platform-dx/web-features/pull/4582))
+  - `webgpu`: backfill compat keys ([#4580](https://github.com/web-platform-dx/web-features/pull/4580))
+  - `flexbox`: backfill compat keys ([#4586](https://github.com/web-platform-dx/web-features/pull/4586))
+  - `random-function`: backfill compat keys ([#4572](https://github.com/web-platform-dx/web-features/pull/4572))
+  - `web-audio`: backfill compat key ([#4605](https://github.com/web-platform-dx/web-features/pull/4605))
+  - `speech-recognition`: backfill compat keys ([#4606](https://github.com/web-platform-dx/web-features/pull/4606))
+  - `scoped-custom-element-registries`: backfill compat key ([#4609](https://github.com/web-platform-dx/web-features/pull/4609))
+  - `offline-audio-context-incremental-rendering`: backfill compat keys ([#4603](https://github.com/web-platform-dx/web-features/pull/4603))
+
+- Infrastructure and tools:
+  - `next` releases: create a new release if the draft release is missing ([#4597](https://github.com/web-platform-dx/web-features/pull/4597))
+  - `next` releases: fix shell quoting bug ([#4598](https://github.com/web-platform-dx/web-features/pull/4598))
+
+- Notable reviews:
+  - `container-scroll-state-queries`: include `scrolled` key ([#4567](https://github.com/web-platform-dx/web-features/pull/4567)) by @rviscomi
+  - `canvas-html`: update name, description, and expected compat keys ([#4560](https://github.com/web-platform-dx/web-features/pull/4560)) by @ewewraw
+  - Add Document-Isolation-Policy feature ([#4561](https://github.com/web-platform-dx/web-features/pull/4561)) by @adamsilverstein
+  - Add OfflineAudioContext incremental rendering feature ([#4475](https://github.com/web-platform-dx/web-features/pull/4475)) by @Rutujakirad
+
+## 2026-W42/W43
+
+_Reporting period_: 12 October 2026 – 25 October 2026
+
+### Team Heck B.V.
+
+- Releases: [v3.43.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.43.0), [v3.44.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.44.0)
+
+- Added feature entries
+  - Break out `AccentColor` and `AccentColorText` from `system-color` CSS feature ([#4503](https://github.com/web-platform-dx/web-features/pull/4503))
+  - Add `revert-rule` feature ([#4534](https://github.com/web-platform-dx/web-features/pull/4534))
+  - Add `column-wrap` feature ([#4521](https://github.com/web-platform-dx/web-features/pull/4521))
+
+- Backfilled compat keys
+  - `currentcolor`: backfill CSS type compat key ([#4502](https://github.com/web-platform-dx/web-features/pull/4502))
+  - `transforms3d`: backfill compat keys ([#4501](https://github.com/web-platform-dx/web-features/pull/4501))
+  - `textarea`: backfill `wrap` attribute compat keys ([#4500](https://github.com/web-platform-dx/web-features/pull/4500))
+  - `draganddrop`: backfill `draggable` attribute compat key ([#4499](https://github.com/web-platform-dx/web-features/pull/4499))
+  - `borders`: backfill `<line-width>` CSS type compat key ([#4497](https://github.com/web-platform-dx/web-features/pull/4497))
+  - `animations-css`: backfill compat keys ([#4496](https://github.com/web-platform-dx/web-features/pull/4496))
+  - `svg`: backfill compat keys ([#4495](https://github.com/web-platform-dx/web-features/pull/4495))
+  - `mouse-events`: backfill compat keys ([#4494](https://github.com/web-platform-dx/web-features/pull/4494))
+  - `arianotify`: backfill compat key ([#4493](https://github.com/web-platform-dx/web-features/pull/4493))
+  - `color`: backfill `currentcolor` compat key ([#4410](https://github.com/web-platform-dx/web-features/pull/4410))
+  - `flexbox`: backfill compat keys ([#4492](https://github.com/web-platform-dx/web-features/pull/4492))
+  - `wasm-non-trapping-float-to-int`: backfill compat keys ([#4510](https://github.com/web-platform-dx/web-features/pull/4510))
+  - `wasm-bulk-memory`: backfill compat keys ([#4518](https://github.com/web-platform-dx/web-features/pull/4518))
+  - `webnn`: backfill compat keys ([#4519](https://github.com/web-platform-dx/web-features/pull/4519))
+  - `intl`: backfill compat keys ([#4514](https://github.com/web-platform-dx/web-features/pull/4514))
+  - `trusted-types`: backfill compat keys ([#4517](https://github.com/web-platform-dx/web-features/pull/4517))
+  - `media-capture`: backfill compat keys ([#4520](https://github.com/web-platform-dx/web-features/pull/4520))
+  - `masks`: backfill compat keys ([#4516](https://github.com/web-platform-dx/web-features/pull/4516))
+  - `mask-border`: backfill compat keys ([#4515](https://github.com/web-platform-dx/web-features/pull/4515))
+  - `font-variant-ligatures`: backfill compat keys ([#4512](https://github.com/web-platform-dx/web-features/pull/4512))
+  - `font-variant-east-asian`: backfill compat keys ([#4511](https://github.com/web-platform-dx/web-features/pull/4511))
+  - `font-variant-numeric`: backfill compat keys ([#4513](https://github.com/web-platform-dx/web-features/pull/4513))
+  - `source`: backfill compat keys ([#4413](https://github.com/web-platform-dx/web-features/pull/4413))
+  - `scroll-triggered-animations`: add `api.AnimationTrigger` compat key ([#4524](https://github.com/web-platform-dx/web-features/pull/4524))
+  - `show-picker-input`: backfill compat keys ([#4542](https://github.com/web-platform-dx/web-features/pull/4542))
+  - `font-variant-caps`: backfill compat keys ([#4543](https://github.com/web-platform-dx/web-features/pull/4543))
+  - `fedcm`: backfill compat keys ([#4544](https://github.com/web-platform-dx/web-features/pull/4544))
+  - `clear-site-data`: backfill compat keys ([#4545](https://github.com/web-platform-dx/web-features/pull/4545))
+  - `flexbox`: backfill compat keys ([#4546](https://github.com/web-platform-dx/web-features/pull/4546))
+  - `svg`: backfill compat keys ([#4547](https://github.com/web-platform-dx/web-features/pull/4547))
+  - `local-network-access`: backfill compat keys ([#4535](https://github.com/web-platform-dx/web-features/pull/4535))
+
+- Infrastructure and tools
+  - Dependabot: remove `caniuse-lite` from cooldown exemption ([#4523](https://github.com/web-platform-dx/web-features/pull/4523))
+  - Statistics workflow: add monthly report ([#4554](https://github.com/web-platform-dx/web-features/pull/4554))
+
+- Notable reviews:
+  - Add scroll triggered animations feature ([#4163](https://github.com/web-platform-dx/web-features/pull/4163)) by @captainbrosset
+  - HTML setters remove erroneous shadowdom methods ([#4529](https://github.com/web-platform-dx/web-features/pull/4529)) by @tunetheweb
+  - Remove runScripts and sanitizer from TrustedHTMLParserOptions ([#4550](https://github.com/web-platform-dx/web-features/pull/4550)) by @tunetheweb
+  - Add dir global attribute feature ([#4533](https://github.com/web-platform-dx/web-features/pull/4533)) by @xfq
+
 ## 2026-W40/W41
 
 _Reporting period_: 28 September 2026 – 11 October 2026
