@@ -3,6 +3,48 @@
 **Scope:** Improving the state of web tests in Chromium-based browsers.
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
 
+## November 2 - Nov 15 2026 (weeks 45-46)
+
+Hello, this is a report covering weeks 45-46. Of highlight, the fix for the incorrect mix-blend-mode WPT tests and keeping white space after inline boxes in tables were both merged, the `fast/domurl` and `fast/eventsource` internal tests were removed or migrated to WPT, and more TestExpectations and content_shell.filter entries were cleaned up.
+
+
+### Test Expectations
+
+#### mix-blend-mode WPT tests
+- [Merged] Fix incorrect mix-blend-mode WPT tests - https://crrev.com/c/8666338
+  - https://crbug.com/40115725
+  - Fixed wrong expected colors and added a missing border-style to the tests.
+
+#### White space after inline boxes in tables
+- [Merged] Keep white space after inline boxes in tables - https://chromium-review.googlesource.com/c/chromium/src/+/8720009
+  - https://crbug.com/40507408, https://crbug.com/40767860
+  - Kept the white space after an inline box in a table, since both go into the same anonymous cell. Follow-up requested by the reviewer to put the change behind a runtime flag.
+    - [Review] Add runtime flag for keeping white space after inline in tables - https://chromium-review.googlesource.com/c/chromium/src/+/8827767
+
+#### Test expectations cleanup
+- [Done] Clean up TestExpectations file - https://chromium-review.googlesource.com/c/chromium/src/+/8692608
+- [Done] Remove obsolete generated mixed content autoupgrade img-tag tests - https://chromium-review.googlesource.com/c/chromium/src/+/8734443
+- [Done] Update outdated border spacing test for LayoutNG - https://chromium-review.googlesource.com/c/chromium/src/+/8786281
+
+#### content_shell.filter cleanup
+- [Done] Remove CSS text tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8694212
+- [Done] Remove misc content_shell.filter tests - https://chromium-review.googlesource.com/c/chromium/src/+/8759791
+- [Done] Remove misc tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8772724
+- [Done] Remove virtual CSS filter effects tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8769985
+- [Done] Remove embedded content tests from content_shell.filter - https://chromium-review.googlesource.com/c/chromium/src/+/8777692
+
+### Internal Tests
+
+#### Internal Tests already covered by WPT (https://crbug.com/485677942)
+- Removed fast/domurl tests already covered by WPT and moved the missing cases into WPT.
+  - [Merged] Remove URLSearchParams web tests covered by WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8750859
+  - [Merged] Move URLSearchParams constructor tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8790793
+  - [Merged] Migrate legacy URL tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8794971
+  - [Merged] Migrate remaining fast/domurl tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8809574
+- [Merged] Remove redundant fast/serviceworker interface tests - https://chromium-review.googlesource.com/c/chromium/src/+/8750679
+- [Merged] Remove and migrate fast/eventsource tests to WPT - https://chromium-review.googlesource.com/c/chromium/src/+/8736201
+
+
 ## October 19 - Nov 1 2026 (weeks 43-44)
 
 ### Summary
