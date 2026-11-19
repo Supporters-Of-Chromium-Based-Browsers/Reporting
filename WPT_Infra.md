@@ -1,5 +1,80 @@
 # SOCBB WPT Infra Igalia Status Updates
 
+## November 2 - Nov 15 2026 (weeks 45-46)
+
+**Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing
+
+### Summary
+
+Hello, this is a report covering weeks 45-46. Of highlight, the fallback fix for the aamtests timeouts was merged, the click automation work moved forward with two Chromium CLs landed, the WebDriver BiDi proposal for navigating with "browser UI" user involvement was approved, and the HTML-AAM AT-SPI tests are approved pending spec changes.
+
+### Support native find-in-page in WPT
+- https://issues.chromium.org/issues/492228028
+- No progress
+  - The proposal for updates (https://github.com/w3c/webdriver-bidi/issues/1157#issuecomment-6580843713) stays with no reactions
+
+### Installable web apps in WPT
+- https://issues.chromium.org/issues/494012779
+- No progress
+  - Communicated with Dan Murphy from Google who works on automating PWAs
+
+### Make it possible to test classic scrollbars
+- https://issues.chromium.org/issues/570412107
+- No progress
+
+### Timeouts in aamtests
+- https://issues.chromium.org/issues/565453068
+- Minimal fix is deployed
+  - The fallback solution https://github.com/web-platform-tests/wpt/pull/64260 is merged, now waiting for confirmation that it helped
+  - The better one (fix the image used by CI) depends on other people and is not moving
+
+### Automate clicks in tests
+- https://issues.chromium.org/issues/570354842
+- Moving forward
+  - https://github.com/web-platform-tests/wpt/pull/64033 is on review
+  - Proposed a PoC in Chromium, got positive feedback, prepared a design document, addressed feedback, in parallel worked on the actual solution
+  - https://crrev.com/c/8726991 is the PoC (will be abandoned)
+  - https://crrev.com/c/8754719 is landed
+  - https://crrev.com/c/8754763 is landed
+  - https://crrev.com/c/8815926 is on review
+  - https://crrev.com/c/8775914 is WIP
+
+### WPT: No way to force a certain orientation angle
+- [Fixed] https://issues.chromium.org/issues/568011884
+- [Merged] Re-enable generic-sensor screen referenceFrame test - https://github.com/web-platform-tests/wpt/pull/63425
+
+### WPT: Cannot test browser-initiated reload
+- https://issues.chromium.org/issues/568079742
+- [Approved] Navigate with "browser UI" user involvement - #1180 - https://github.com/w3c/webdriver-bidi/pull/1180
+
+### WPT: Prevent duplication between HTML-AAM and Core-AAM tests
+- https://issues.chromium.org/issues/574059443
+- [In Review, Approved pending spec changes] aamtests: Add HTML-AAM AT-SPI element tests - https://github.com/web-platform-tests/wpt/pull/65050
+- [Superseded by above after review] aamtests: Add assert_role_mapping() to reuse Core-AAM role checks - https://github.com/web-platform-tests/wpt/pull/64661
+
+### WPT: No testdriver.js method for sequential navigation
+- https://issues.chromium.org/issues/578080491
+- Multiple prototypes complete, assessing tradeoffs and initial scope
+- Reached agreement with Vladimir Levin from Chromium team on overlapping parts of our work
+
+### WPT: Add ability to test with popup blocker enabled
+- https://issues.chromium.org/issues/576696063
+- Background research and probe of current engine behavior with popup blocking configurations
+
+### WPT reftests for HDR and wide gamut color
+- WPT-side RFC and standardization:
+  - [Blocked on review] WPT RFC PR #242 (https://github.com/web-platform-tests/rfcs/pull/242): Awaits further feedback.
+
+### Mock devices for getUserMedia() tests
+- [In Review] [DevTools] Wait for mock camera registration before replying - https://chromium-review.googlesource.com/c/chromium/src/+/8609547
+  - Addressed review feedback by making the service explicitly fail pending registrations during shutdown. This preserves the existing shutdown order and device enumeration behavior. Added coverage for shutdown and simplified the registration tests.
+
+### Page zoom / device pixel ratio testing
+- [Blocked on review] WPT PR #59265 (https://github.com/web-platform-tests/wpt/pull/59265): Still waiting for a response.
+  - [testdriver] Expose BiDi browsingContext.setViewport to regular WPT tests
+  - I addressed the previous review feedback and requested another review of the updated code, but have not received a response yet. Help getting a follow-up review would be appreciated so the PR can move forward.
+
+
 ## October 19 - Nov 1 2026 (weeks 43-44)
 
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/14Q1zF9KocS-S94JBRbDFl3n7ymAZNMhOoFt3HMOJ9R0/edit?usp=sharing

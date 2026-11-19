@@ -1,5 +1,99 @@
 # SOCBB Interop Igalia Status Updates
 
+## November 2 - Nov 15 2026 (weeks 45-46)
+
+* **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
+
+### Summary
+
+Hello, this is a report covering weeks 45-46. Of highlight, the BaseAudioContext `suspend()`/`resume()` promise ordering fix was merged, the CSS Background shorthand fix and an accompanying Fetch API fix were merged, most of the CLs for reporting CSP violations of worker/worklet module fetches were merged, and new CLs were opened for the SharedWorker connect event data attribute and MIME type checks in `importScripts()`.
+
+### (bugfix) BaseAudioContext should not skip suspended state upon construction
+- https://crbug.com/40140417
+- Settle AudioContext suspend() and resume() promises in call order
+  - [ MERGED ] https://crrev.com/c/8584016
+
+### Worker/Worklet CSP violations on module tree fetching don't fire securitypolicyviolation event
+- Failures in wpt/content-security-policy/gen/ - https://crbug.com/40612680
+- Clean up unused method argument/mojo interface field.
+  - [ MERGED ] https://crrev.com/c/8689749
+- Remove unused 'directive' field from network::mojom::CSPViolation
+  - [ MERGED ] https://crrev.com/c/8690025
+- Use info level for report-only CSP violations checked in the frame host
+  - [ MERGED ] https://crrev.com/c/8690026
+- Report CSP violations of worker/worklet module fetches on the creator
+  - [ MERGED ] https://crrev.com/c/8277072
+- Add base class for common CSP reporting steps to outside context
+  - [ MERGED ] https://crrev.com/c/8703255
+- Notify worker/worklet fetch failure after CSP violation event
+  - [ REVIEW ] https://crrev.com/c/8700836
+  - Addressed review comments from CSP owner and got +1.
+  - Waiting for the review from Worker owner.
+
+### Make `blob` URL opaque when it has non-http/https/file inner scheme
+- https://crbug.com/534847486
+- [ REVIEW ] https://crrev.com/c/8090107
+- Uploaded new patchset that follows the review comments. Still waiting for the review.
+
+### Initialize SharedWorker connect event data attribute to the empty string
+- https://crbug.com/583449815
+- [ REVIEW ] https://crrev.com/c/8667764
+
+### Check MIME types of `data:`, `blob:` and `filesystem:` URLs in importScripts()
+- https://crbug.com/582540332
+- [ REVIEW ] https://crrev.com/c/8754079
+
+### Fetch API interop issues
+- [ MERGED ] https://crrev.com/c/8705914
+- Submitted a PR to the WPT repo with a few additional test cases
+  - [ MERGED ] https://github.com/web-platform-tests/wpt/pull/64745
+
+### CSS Background interop issues
+- The PR 62502 with the new test cases and the fix in the background-valid.html test has been merged, so after waiting for the Chrome sync, we have merged the CL to fix the issue in Chrome
+- [ MERGED ] https://github.com/web-platform-tests/wpt/pull/62502
+- [ MERGED ] https://crrev.com/c/8301652
+
+### object-fit and object-position on SVG documents in `<object>` and `<embed>`
+- [INTENT TO SHIP] object-fit and object-position apply to SVG documents in `<object>` and `<embed>`
+  - Needs support for cross-origin SVG.
+  - https://crbug.com/41302806
+  - https://chromestatus.com/feature/4886345347629056
+  - https://groups.google.com/a/chromium.org/d/msgid/blink-dev/6ab09c5b.60d96795.386b54.0022.GAE%40google.com
+  - Recent CLs:
+    - [MERGED] https://crrev.com/c/8597046 : a11y issue when `SVGEmbeddedAsReplacedElement` is enabled.
+    - [REVIEW] https://crrev.com/c/8605547 : support out-of-process SVG.
+
+### Embedding elements do not distinguish SVG natural size from responsive HTML size
+- Issue with responsive iframes, found while working on the Intent above.
+- https://issues.chromium.org/issues/585446852
+- [REVIEWING] Distinguish SVG natural size from responsive HTML size
+  - https://crrev.com/c/8815308
+
+### SVG intrinsic sizing in an image context
+- [INTENT TO SHIP] SVG intrinsic sizing in an image context
+  - Will start as soon as the other Intent succeeds.
+  - https://crbug.com/40898537
+
+### hspace and vspace on `<input>`
+- [MERGED] Map hspace and vspace on `<input>` only in the Image Button state
+  - https://crrev.com/c/8713178
+  - https://crbug.com/581012178
+
+### IDNA normalization of '<' and '>'
+- [REVIEWING, +1] Let IDNA normalize '<' and '>' before validation
+  - Addressing feedback at https://crrev.com/c/8319268
+  - https://crbug.com/40256677
+
+### namespaces in `attr()`
+- [BACKLOG] Support namespaces in `attr()`
+  - No recent updates.
+  - https://crrev.com/c/7931006
+
+### Memory issue in CSS Animation Iteration Composite
+- [BACKLOG] Memory issue in CSS Animation Iteration Composite
+  - Review potential memory issues.
+  - https://crbug.com/488874620
+
 ## SOCBB Interop Igalia Status Update October 19 - Nov 1 2026 (weeks 43-44)
 
 * **Scope:** Improving standards compliance and resolving interoperability issues across CSS features.
