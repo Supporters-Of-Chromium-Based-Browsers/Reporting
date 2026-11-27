@@ -1,5 +1,86 @@
 # SOCBB Metadata status updates
 
+## 2026-W46/W47
+
+_Reporting period_:  9 November 2026 – 22 November 2026
+
+### Team Heck B.V.
+
+- Releases: [v3.46.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.46.0), [v3.47.0](https://github.com/web-platform-dx/web-features/releases/tag/v3.47.0)
+
+- Added feature entries:
+  - Add CSS navigation features (and navigation group) ([#4548](https://github.com/web-platform-dx/web-features/pull/4548))
+  - Add `scroll-snap-type: pair` CSS feature ([#4522](https://github.com/web-platform-dx/web-features/pull/4522))
+  - Add `polygon()` `round` keyword feature ([#4618](https://github.com/web-platform-dx/web-features/pull/4618))
+  - Add `text-decoration-inset` CSS feature ([#4638](https://github.com/web-platform-dx/web-features/pull/4638))
+  - Add `::field-content` CSS feature ([#4635](https://github.com/web-platform-dx/web-features/pull/4635))
+  - Add WebAssembly wide arithmetic instructions feature ([#4654](https://github.com/web-platform-dx/web-features/pull/4654))
+  - Add `flow-start` and `flow-end` CSS feature ([#4640](https://github.com/web-platform-dx/web-features/pull/4640))
+
+- Backfilled compat keys:
+  - `hsl`: backfill compat key ([#4619](https://github.com/web-platform-dx/web-features/pull/4619))
+  - `filter`: backfill compat key ([#4620](https://github.com/web-platform-dx/web-features/pull/4620))
+  - `masks`: backfill compat keys ([#4621](https://github.com/web-platform-dx/web-features/pull/4621))
+  - `flexbox`: backfill compat keys ([#4622](https://github.com/web-platform-dx/web-features/pull/4622))
+  - `grid`: backfill compat keys ([#4623](https://github.com/web-platform-dx/web-features/pull/4623))
+  - `speech-recognition-grammar`: backfill compat key ([#4636](https://github.com/web-platform-dx/web-features/pull/4636))
+  - `webtransport`: backfill compat keys ([#4637](https://github.com/web-platform-dx/web-features/pull/4637))
+  - `background-blend-mode`: backfill compat keys ([#4639](https://github.com/web-platform-dx/web-features/pull/4639))
+  - `document-isolation-policy`: backfill compat keys ([#4642](https://github.com/web-platform-dx/web-features/pull/4642))
+  - `corner-shape`: backfill compat keys ([#4653](https://github.com/web-platform-dx/web-features/pull/4653))
+  - `container-queries`: backfill compat keys ([#4665](https://github.com/web-platform-dx/web-features/pull/4665))
+  - `mixin`: backfill compat keys ([#4676](https://github.com/web-platform-dx/web-features/pull/4676))
+  - `overflow-overlay`: backfill compat keys ([#4677](https://github.com/web-platform-dx/web-features/pull/4677))
+  - `writing-mode`: backfill compat keys ([#4678](https://github.com/web-platform-dx/web-features/pull/4678))
+
+- Cleaned data:
+  - Update privacy sandbox removal dates ([#4634](https://github.com/web-platform-dx/web-features/pull/4634))
+  - Rename "Text wrap" group to "Text wrapping and hyphenation" ([#4662](https://github.com/web-platform-dx/web-features/pull/4662))
+
+- mdn/browser-compat-data updates:
+  - `position-visibility: anchor-{valid,visible}`: add Firefox Nightly support ([#31099](https://github.com/mdn/browser-compat-data/pull/31099))
+  - `css.properties.pointer-events`: eliminate ranged values ([#31101](https://github.com/mdn/browser-compat-data/pull/31101))
+  - `css.properties.pointer-events.bounding-box`: add Firefox impl URL ([#31102](https://github.com/mdn/browser-compat-data/pull/31102))
+  - Fix `experimental` values ([#31106](https://github.com/mdn/browser-compat-data/pull/31106))
+  - Mark `overflow` `overlay` values as deprecated ([#31103](https://github.com/mdn/browser-compat-data/pull/31103))
+  - Protected Audience APIs: Chrome 157 removes most but not all ([#31120](https://github.com/mdn/browser-compat-data/pull/31120))
+  - `css.properties.writing-mode`: add vertically-oriented table cells subfeature ([#31145](https://github.com/mdn/browser-compat-data/pull/31145))
+  - `contextmenu` event: add behavioral subfeature for popover light dismiss ([#31144](https://github.com/mdn/browser-compat-data/pull/31144))
+  - Mark `overflow` `overlay` values as deprecated, consistently ([#31203](https://github.com/mdn/browser-compat-data/pull/31203))
+
+- Infrastructure and tools:
+  - `audit-consumers.ts`: match revised Chromium use counter names ([#4480](https://github.com/web-platform-dx/web-features/pull/4480))
+  - caniuse mappings: add helpful error message for `wf-` IDs ([#4345](https://github.com/web-platform-dx/web-features/pull/4345))
+  - Statistics: add script to generate coverage gap graphs ([#4624](https://github.com/web-platform-dx/web-features/pull/4624))
+  - Statistics: schedule coverage gap graphs ([#4625](https://github.com/web-platform-dx/web-features/pull/4625))
+
+- Notable reviews:
+  - Add `wrap-inside` CSS property feature ([#4647](https://github.com/web-platform-dx/web-features/pull/4647)) by @nt1m
+  - Add `random-item()` CSS function feature ([#4646](https://github.com/web-platform-dx/web-features/pull/4646)) by @nt1m
+  - Add `white-space-trim` CSS property feature ([#4648](https://github.com/web-platform-dx/web-features/pull/4648)) by @nt1m
+  - Add `hyphenate-limit-lines` CSS property feature ([#4649](https://github.com/web-platform-dx/web-features/pull/4649)) by @nt1m
+  - Updates for Safari 27.3 beta ([#31050](https://github.com/mdn/browser-compat-data/pull/31050)) by @Elchi3
+  - Add Document-Isolation-Policy subfeatures ([#31061](https://github.com/mdn/browser-compat-data/pull/31061)) by @Elchi3
+  - Safari 27.2 supports CSS fit-tolerance ([#31025](https://github.com/mdn/browser-compat-data/pull/31025)) by @Elchi3
+  - Updates for Safari TP 255 ([#31024](https://github.com/mdn/browser-compat-data/pull/31024)) by @Elchi3
+  - Updates for Safari 27.1 ([#31048](https://github.com/mdn/browser-compat-data/pull/31048)) by @Elchi3
+  - Rename nested `@page` at-rules ([#30953](https://github.com/mdn/browser-compat-data/pull/30953)) by @Elchi3
+  - [Google Privacy Sandbox] Chrome 156 stubs out Fenced Frame API ([#31038](https://github.com/mdn/browser-compat-data/pull/31038)) by @Elchi3
+  - Chrome & Firefox don't support historical-forms at-rule ([#30954](https://github.com/mdn/browser-compat-data/pull/30954)) by @Elchi3
+  - Add NV_shader_noperspective_interpolation WebGL extension ([#30977](https://github.com/mdn/browser-compat-data/pull/30977)) by @Elchi3
+  - Add EXT_conservative_depth WebGL extension ([#31017](https://github.com/mdn/browser-compat-data/pull/31017)) by @Elchi3
+  - Add EXT_render_snorm WebGL extension ([#31015](https://github.com/mdn/browser-compat-data/pull/31015)) by @Elchi3
+  - Add OES_sample_variables WebGL extension ([#31014](https://github.com/mdn/browser-compat-data/pull/31014)) by @Elchi3
+  - Add OES_shader_multisample_interpolation WebGL extension ([#31013](https://github.com/mdn/browser-compat-data/pull/31013)) by @Elchi3
+  - Add WEBGL_polygon_mode WebGL extension ([#30996](https://github.com/mdn/browser-compat-data/pull/30996)) by @Elchi3
+  - Add WEBGL_render_shared_exponent WebGL extension ([#30988](https://github.com/mdn/browser-compat-data/pull/30988)) by @Elchi3
+  - Add WEBGL_stencil_texturing WebGL extension ([#30982](https://github.com/mdn/browser-compat-data/pull/30982)) by @Elchi3
+  - Updates for Safari TP 256 ([#31058](https://github.com/mdn/browser-compat-data/pull/31058)) by @Elchi3
+  - Add EXT_depth_clamp WebGL extension ([#31016](https://github.com/mdn/browser-compat-data/pull/31016)) by @Elchi3
+  - Split out overlay value in CSS overflow properties ([#31138](https://github.com/mdn/browser-compat-data/pull/31138)) by @Elchi3
+  - Add CSS mixins ([#31174](https://github.com/mdn/browser-compat-data/pull/31174)) by @Elchi3
+  - Add flow-start/flow-end values to CSS alignment properties ([#31019](https://github.com/mdn/browser-compat-data/pull/31019)) by @Elchi3
+
 ## 2026-W44/W45
 
 _Reporting period_: 26 October 2026 – 8 November 2026
